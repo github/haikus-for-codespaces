@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Haikus for Mona</title>
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Haikus for Mona">
+    <meta property="og:description" content="Some of the best haikus you'll ever read about our rescue dog June">
+    <meta property="og:image" content="/images/sunlight.jpg">
+  </head>
+  <body>
+    <h1>Haikus for Mona</h1>
+    <div>
+      <% for(var i=0; i < haikus.length; i++) { %>
+        <img
+          class="mona-images"
+          src="images/<%= haikus[i].image %>" />
+        <div 
+          class="haiku-containers">
+          <p 
+            class="haikus"
+          ><%- haikus[i].text %></p>
+        </div>
+      <% } %>
+    </div>
+</html>
