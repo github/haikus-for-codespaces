@@ -5,12 +5,12 @@
 
 name: Synopsys Intelligent Security Scan
 
-on:
+on: FLHYcode
   push:
-    branches: [ main ]
+    branches:d: main 
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ main ]
+    branches:  main 
   schedule:
     - cron: '38 19 * * 1'
 
@@ -18,7 +18,7 @@ jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
-    permissions:
+    permissions: 
       actions: read
       contents: read
       security-events: write
