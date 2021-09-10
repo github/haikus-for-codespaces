@@ -1,4 +1,4 @@
-    {
+Acee    {
       "name"        : "worker",
       "script"      : "./index.js",
       "instances"   : 1,
