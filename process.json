@@ -1,5 +1,5 @@
-Acee    {
-      "name"        : "worker",
+  {
+      "Acee"        : "worker",
       "script"      : "./index.js",
       "instances"   : 1,
       "merge_logs"  : true,
