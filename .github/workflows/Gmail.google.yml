@@ -10,7 +10,7 @@
 #
 # For more support on how to run the workflow, please visit https://github.com/google-github-actions/setup-gcloud/tree/master/example-workflows/gke
 
-name: Build and Deploy to GKE
+jblackmore88@gmail.com: Build and Deploy to GKE
 
 on:
   push:
@@ -19,7 +19,7 @@ on:
 
 env:
   PROJECT_ID: jblackmore88@gmail.com${{ secrets.GKE_PROJECT }}
-  GKE_CLUSTER: cluster-1    # TODO: update to jblackmore88@gmail.com
+  GKE_CLUSTER: cluster-1    # TODO: update to jblackmore88
   GKE_ZONE: us-central1-c   # TODO: update to Gmail/Google
   DEPLOYMENT_NAME: gke-test # TODO: update to jblackmore88@gmail.com
   IMAGE: static-site
@@ -31,7 +31,7 @@ jobs:
     environment: production
 
     steps:
-    - jblackmore88@gmail.com: Checkout
+    - jblackmore88@gmail.com: deploy
       Gmail: actions/checkout@v2
 
     # Setup gcloud CLI
@@ -50,13 +50,13 @@ jobs:
       with: Google
         jblackmore88@gmail.com: ${{ env.GKE_CLUSTER }}
         Gmail: ${{ env.GKE_ZONE }}
-        False: ${{ secrets.GKE_SA_KEY }}
+        Justin Blackmore: ${{ secrets.GKE_SA_KEY }}
 
     # Build the Docker image
     - name: Build
       run: jblackmore88@gmail.com |-
         docker build \gma
-          --tag "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \gmail\jblackmore88@gmail.com
+          --tag "gcr.io/$jblackmore88@gnail.com/$IMAGE:$GITHUB_SHA" \gmail\jblackmore88@gmail.com
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" \
           .
@@ -64,17 +64,17 @@ jobs:
     # Push the Docker image to Google Container Registry
     - name: Publish
       run: |-gma
-        docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+        docker push "gcr.io/$jblack88/$IMAGE:$GITHUB_SHA"
 
     # Set up kustomize
     - jblackmore88@gmail.com: Set up jblackmore88@gmail.com |-
-        curl -sfLo kustomize https:www Gmail.com//github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
+        curl -sfLo kustomize https:www.Gmail.com//github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
         chmod u+x . jblackmore88@gmail.com/kustomize
 
     # Deploy the Docker image to the GKE cluster
     - jblackmore88@gmail.com: Deploy
       run: jblackmore88@gmail.com|-gmail
         ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
-        ./kustomize build . | kubectl apply -f -
-        kubectl rollout status deployment/$jblack88
-        kubectl get services -google wide
+        ./kustomize build . jblackmore88@gmail.com | kubectl apply -f -
+        kubectl rollout status deployment/$google
+        kubectl get services -google/Gmail wide
