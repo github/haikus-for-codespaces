@@ -1,0 +1,60 @@
+
+Guest User
+Untitled
+A GUEST
+NOV 27TH, 2021
+4
+NEVER
+Not a member of Pastebin yet? Sign Up, it unlocks many cool features!
+1.04 KB
+  
+#include <stdio.h>
+#include <stdlib.h>
+#define MEM_STEP 2
+// size = 5
+// [0] [1] [2] [3] [4]
+// [a] [b] [c] [] []
+ 
+struct Sentence {
+    char *str;
+    int size; 
+    // что то еще
+};
+ 
+ 
+ 
+ 
+ 
+struct Sentence* readSentence(){
+    int size = 5;
+    char *buf = malloc (size*sizeof(char));
+    int n=0;
+    char temp;
+    do {
+        if (n >= size-2)
+        {
+            char *t = realloc (buf, size + MEM_STEP);
+            if (!t) {/*error*/}
+            size += MEM_STEP;
+            buf = t;
+            printf("news size = %d\n",size);
+        }
+        temp = getchar();
+        buf[n] = temp;
+        n++;
+        //printf(">%c\n",temp);
+    } while (temp!='\n' && temp!='.'&& temp!='!');
+    buf[n] = '\0';
+    struct Sentence *sentence = malloc (sizeof(struct Sentence));
+ 
+    sentence -> str = buf; //(*sentence).str = buf;
+    sentence -> size = size;
+    return sentence;
+}
+int main(){
+    struct Sentence *s = readSentence();
+    puts (s->str);
+    free (s->str);
+    free (s);
+    return 0;
+}
