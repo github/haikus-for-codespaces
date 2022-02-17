@@ -1,0 +1,231 @@
+#EXTM3U
+#EXTINF:-1 tvg-name="CCTV1" group-title="CCTV央视,#genre#",CCTV1
+http://39.135.138.60:18890/PLTV/88888910/224/3221225618/index.m3u8
+#EXTINF:-1 tvg-name="CCTV1" group-title="CCTV央视,#genre#",CCTV1
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/cctv1hd/2300000/mnf.m3u8
+#EXTINF:-1 tvg-name="CCTV2" group-title="CCTV央视,#genre#",CCTV2
+http://39.135.138.60:18890/PLTV/88888910/224/3221225619/index.m3u8
+#EXTINF:-1 tvg-name="CCTV3" group-title="CCTV央视,#genre#",CCTV3
+http://39.135.138.60:18890/PLTV/88888910/224/3221225647/index.m3u8
+#EXTINF:-1 tvg-name="CCTV4" group-title="CCTV央视,#genre#",CCTV4
+http://39.135.138.60:18890/PLTV/88888910/224/3221225621/index.m3u8
+#EXTINF:-1 tvg-name="CCTV5" group-title="CCTV央视,#genre#",CCTV5
+http://39.135.138.59:18890/PLTV/88888910/224/3221225648/index.m3u8
+#EXTINF:-1 tvg-name="CCTV5+" group-title="CCTV央视,#genre#",CCTV5+
+http://cctvalih5ca.v.myalicdn.com/live/cctv5plus_2/index.m3u8
+#EXTINF:-1 tvg-name="CCTV6" group-title="CCTV央视,#genre#",CCTV6
+http://39.135.138.59:18890/PLTV/88888910/224/3221225650/index.m3u8
+#EXTINF:-1 tvg-name="CCTV7" group-title="CCTV央视,#genre#",CCTV7
+http://39.135.138.60:18890/PLTV/88888910/224/3221225624/index.m3u8
+#EXTINF:-1 tvg-name="CCTV8" group-title="CCTV央视,#genre#",CCTV8
+http://39.135.138.60:18890/PLTV/88888910/224/3221225635/index.m3u8
+#EXTINF:-1 tvg-name="CCTV9" group-title="CCTV央视,#genre#",CCTV9
+http://39.135.138.59:18890/PLTV/88888910/224/3221225626/index.m3u8
+#EXTINF:-1 tvg-name="CCTV10" group-title="CCTV央视,#genre#",CCTV10
+http://39.135.138.59:18890/PLTV/88888910/224/3221225627/index.m3u8
+#EXTINF:-1 tvg-name="CCTV11" group-title="CCTV央视,#genre#",CCTV11
+http://39.135.138.59:18890/PLTV/88888910/224/3221225628/index.m3u8
+#EXTINF:-1 tvg-name="CCTV12" group-title="CCTV央视,#genre#",CCTV12
+http://39.135.138.59:18890/PLTV/88888910/224/3221225629/index.m3u8
+#EXTINF:-1 tvg-name="CCTV13" group-title="CCTV央视,#genre#",CCTV13
+http://39.135.138.60:18890/PLTV/88888910/224/3221225638/index.m3u8
+#EXTINF:-1 tvg-name="CCTV14" group-title="CCTV央视,#genre#",CCTV14
+http://39.135.138.60:18890/PLTV/88888910/224/3221225639/index.m3u8
+#EXTINF:-1 tvg-name="CCTV15" group-title="CCTV央视,#genre#",CCTV15
+http://39.135.138.60:18890/PLTV/88888910/224/3221225641/index.m3u8
+#EXTINF:-1 tvg-name="CCTV17" group-title="CCTV央视,#genre#",CCTV17
+http://39.135.138.59:18890/PLTV/88888910/224/3221225908/index.m3u8
+#EXTINF:-1 tvg-name="纯享4K" group-title="CCTV央视,#genre#",纯享4K
+http://39.135.138.60:18890/PLTV/88888910/224/3221225786/index.m3u8
+#EXTINF:-1 tvg-name="CNC中文" group-title="CCTV央视,#genre#",CNC中文
+http://39.135.138.59:18890/PLTV/88888910/224/3221225694/index.m3u8
+#EXTINF:-1 tvg-name="CNC英文" group-title="CCTV央视,#genre#",CNC英文
+http://39.135.138.59:18890/PLTV/88888910/224/3221225693/index.m3u8
+#EXTINF:-1 tvg-name="凤凰中文" group-title="凤凰卫视,#genre#",凤凰中文
+http://223.110.245.139/PLTV/3/224/3221226922/index.m3u8
+#EXTINF:-1 tvg-name="凤凰咨询" group-title="凤凰卫视,#genre#",凤凰咨询
+http://223.110.245.136/PLTV/3/224/3221226923/index.m3u8
+#EXTINF:-1 tvg-name="凤凰香港" group-title="凤凰卫视,#genre#",凤凰香港
+http://223.110.245.136/PLTV/3/224/3221226975/index.m3u8?icpid=88888888&from=0&hms_devid=3804
+#EXTINF:-1 tvg-name="安徽卫视" group-title="卫视频道,#genre#",安徽卫视
+http://live1.ahtv.cn/ahws/playlist.m3u8?_upt=f4add71c1643057399
+#EXTINF:-1 tvg-name="东方卫视" group-title="卫视频道,#genre#",东方卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/hddfws/4000000/mnf.m3u8
+#EXTINF:-1 tvg-name="北京卫视" group-title="卫视频道,#genre#",北京卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/bjwshd/2300000/mnf.m3u8
+#EXTINF:-1 tvg-name="湖北卫视" group-title="卫视频道,#genre#",湖北卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/hbwshd/2300000/mnf.m3u8
+#EXTINF:-1 tvg-name="湖南卫视" group-title="卫视频道,#genre#",湖南卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/hnwshd/2300000/mnf.m3u8
+#EXTINF:-1 tvg-name="湖南娱乐" group-title="卫视频道,#genre#",湖南娱乐
+https://phoneqq.qing.mgtv.com/nn_live/nn_x64/cWlkPSZzPWI1NGFiYmM2MmNmMmZhZjA2YWVmMDlmNzk0MzRhYjExJmVzPTE2NDMwNzgyMTYmdXVpZD00YTkyY2M0M2QzZWQxMWRlNjdiNGRhZGQ2MzgzZjdiMC03MmY2YjQ5NyZ2PTImYXM9MCZjZG5leF9pZD1xcV9waG9uZV9saXZl/HNYLMPP360.m3u8?_t=1643049416710&_t=1643049416937
+#EXTINF:-1 tvg-name="湖南电影" group-title="卫视频道,#genre#",湖南电影
+https://phonews.qing.mgtv.com/nn_live/nn_x64/cWlkPSZzPWJkNmY0N2NhNzYwYjQ3ZmQ3OWY1ZDc4YzFiNGFlZDYyJmVzPTE2NDMwNzgyOTAmdXVpZD0yNDI4YzZhZmJiNWNiZDY3ZTc2NjEwZjNhZGFiM2Y2Ni03MmY2YjQ5NyZ2PTImYXM9MCZjZG5leF9pZD13c19waG9uZTM,/HNDYMPP360.m3u8?_t=1643049489873&_t=1643049490001
+#EXTINF:-1 tvg-name="湖南电视剧" group-title="卫视频道,#genre#",湖南电视剧
+https://phoneqq.qing.mgtv.com/nn_live/nn_x64/cWlkPSZzPWU4OTJmOTRmZTg1NWI0N2U5ZGI0OTIyYmE3NGMwNzJkJmVzPTE2NDMwNzgzMzgmdXVpZD1hYmQ0MDExN2FiMTQ4MDU1ZjkwMTNlMDJmYjhjZTQzZC03MmY2YjQ5NyZ2PTImYXM9MCZjZG5leF9pZD1xcV9waG9uZV9saXZl/HNDSJMPP360.m3u8?_t=1643049537953&_t=1643049538037
+#EXTINF:-1 tvg-name="重庆卫视" group-title="卫视频道,#genre#",重庆卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/cqws/1300000/mnf.m3u8
+#EXTINF:-1 tvg-name="甘肃卫视" group-title="卫视频道,#genre#",甘肃卫视
+https://hls.gstv.com.cn/49048r/6e1sy2.m3u8
+#EXTINF:-1 tvg-name="广西卫视" group-title="卫视频道,#genre#",广西卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/gxws/1300000/mnf.m3u8
+#EXTINF:-1 tvg-name="云南卫视" group-title="卫视频道,#genre#",云南卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/ynws/1300000/mnf.m3u8
+#EXTINF:-1 tvg-name="深圳卫视" group-title="卫视频道,#genre#",深圳卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/szwshd/2300000/mnf.m3u8
+#EXTINF:-1 tvg-name="天津卫视" group-title="卫视频道,#genre#",天津卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/tjwshd/2300000/mnf.m3u8
+#EXTINF:-1 tvg-name="四川卫视" group-title="卫视频道,#genre#",四川卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/scws/1300000/mnf.m3u8
+#EXTINF:-1 tvg-name="广东卫视" group-title="卫视频道,#genre#",广东卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/gdwshd/2300000/mnf.m3u8
+#EXTINF:-1 tvg-name="辽宁卫视" group-title="卫视频道,#genre#",辽宁卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/lnwshd/2300000/mnf.m3u8
+#EXTINF:-1 tvg-name="海峡卫视" group-title="卫视频道,#genre#",海峡卫视
+http://live6.fjtv.net/haixiapd/playlist.m3u8?_upt=c729a03c1643060632
+#EXTINF:-1 tvg-name="黑龙江卫视" group-title="卫视频道,#genre#",黑龙江卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/hljwshd/2300000/mnf.m3u8
+#EXTINF:-1 tvg-name="浙江卫视" group-title="卫视频道,#genre#",浙江卫视
+http://hw-m-l.cztv.com/channels/lantian/channel01/1080p.m3u8
+#EXTINF:-1 tvg-name="江苏卫视" group-title="卫视频道,#genre#",江苏卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/jswshd/2300000/mnf.m3u8
+#EXTINF:-1 tvg-name="吉林卫视" group-title="卫视频道,#genre#",吉林卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/jlws/1300000/mnf.m3u8
+#EXTINF:-1 tvg-name="山东卫视" group-title="卫视频道,#genre#",山东卫视
+http://shbu.live.bestvcdn.com.cn:8080/live/program/live/sdwshd/2300000/mnf.m3u8
+#EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道,#genre#",东南卫视
+http://live1.fjtv.net/dnpd/playlist.m3u8?_upt=9e52205d1643060495
+#EXTINF:-1 tvg-name="香港卫视" group-title="卫视频道,#genre#",香港卫视
+http://zhibo.hkstv.tv/livestream/mutfysrq/playlist.m3u8
+#EXTINF:-1 tvg-name="翡翠台" group-title="香港频道,#genre#",翡翠台
+http://116.199.5.51:8114/index.m3u8?Fsv_chan_hls_se_idx=188&FvSeid=1&Fsv_ctype=LIVES&Fsv_otype=1&Provider_id=&Pcontent_id=.m3u8
+#EXTINF:-1 tvg-name="明珠台" group-title="香港频道,#genre#",明珠台
+http://116.199.5.51:8114/00000000/index.m3u8?&Fsv_ctype=LIVES&Fsv_otype=1&FvSeid=5abd1660af1babb4&Fsv_filetype=1&Fsv_ctype=LIVES&Fsv_cid=0&Fsv_chan_hls_se_idx=12&Fsv_rate_id=1&Fsv_SV_PARAM1=0&Fsv_ShiftEnable=0&Fsv_ShiftTsp=0&Provider_id=&Pcontent_id=&Fsv_
+#EXTINF:-1 tvg-name="壹新闻台" group-title="台湾频道,#genre#",壹新闻台
+http://211.23.114.106:8548/http/116.50.42.19:8081/hls/66/808/ch24.m3u8
+#EXTINF:-1 tvg-name="寰宇新闻" group-title="台湾频道,#genre#",寰宇新闻
+http://211.23.114.106:8547/http/116.50.42.19:8081/hls/76/818/ch62.m3u8
+#EXTINF:-1 tvg-name="TVBS HD" group-title="台湾频道,#genre#",TVBS HD
+http://211.23.114.106:8545/http/116.50.42.19:8081/hls/64/806/ch15.m3u8
+#EXTINF:-1 tvg-name="三立新闻" group-title="台湾频道,#genre#",三立新闻
+http://211.23.114.106:8543/http/60.251.39.91:8081/hls/65/807/ch18.m3u8
+#EXTINF:-1 tvg-name="民视新闻" group-title="台湾频道,#genre#",民视新闻
+http://211.23.114.106:8542/http/60.251.39.91:8081/hls/73/815/ch51.m3u8
+#EXTINF:-1 tvg-name="中天新闻" group-title="台湾频道,#genre#",中天新闻
+http://211.23.114.106:8541/http/60.251.39.91:8081/hls/78/80/ch63max.m3u8
+#EXTINF:-1 tvg-name="东森新闻" group-title="台湾频道,#genre#",东森新闻
+http://211.23.114.106:8540/http/60.251.39.91:8081/hls/63/805/ch10.m3u8
+#EXTINF:-1 tvg-name="人间卫视" group-title="台湾频道,#genre#",人间卫视
+http://211.23.114.106:8506/http/61.221.81.94:8088/hls/69/811/ch36.m3u8
+#EXTINF:-1 tvg-name="公视" group-title="台湾频道,#genre#",公视
+http://211.23.114.106:8505/http/61.221.81.94:8088/hls/73/815/ch50.m3u8
+#EXTINF:-1 tvg-name="民视" group-title="台湾频道,#genre#",民视
+http://211.23.114.106:8504/http/61.221.81.94:8088/hls/73/815/ch49.m3u8
+#EXTINF:-1 tvg-name="华视" group-title="台湾频道,#genre#",华视
+http://211.23.114.106:8503/http/61.221.81.94:8088/hls/72/814/ch48.m3u8
+#EXTINF:-1 tvg-name="中视" group-title="台湾频道,#genre#",中视
+http://211.23.114.106:8502/http/61.221.81.94:8088/hls/72/814/ch47.m3u8
+#EXTINF:-1 tvg-name="台视" group-title="台湾频道,#genre#",台视
+http://211.23.114.106:8502/http/61.221.81.94:8088/hls/72/814/ch46.m3u8
+#EXTINF:-1 tvg-name="星空卫视" group-title="台湾频道,#genre#",星空卫视
+http://116.199.5.52:8114/00000000/index.m3u8?&Fsv_ctype=LIVES&Fsv_otype=1&FvSeid=5abd1660af1babb4&Pcontent_id=&Provider_id=&Fsv_chan_hls_se_idx=233
+#EXTINF:-1 tvg-name="东森幼幼" group-title="台湾频道,#genre#",东森幼幼
+http://211.23.114.106:8515/http/61.221.81.94:8088/hls/63/805/ch09.m3u8
+#EXTINF:-1 tvg-name="卫视中文" group-title="台湾频道,#genre#",卫视中文
+http://211.23.114.106:8514/http/60.251.39.91:8081/hls/62/804/ch05.m3u8
+#EXTINF:-1 tvg-name="中天娱乐" group-title="台湾频道,#genre#",中天娱乐
+http://211.23.114.106:8527/http/60.251.39.91:8081/hls/67/809/ch26.m3u8
+#EXTINF:-1 tvg-name="中天综合" group-title="台湾频道,#genre#",中天综合
+http://211.23.114.106:8526/http/60.251.39.91:8081/hls/67/809/ch25.m3u8
+#EXTINF:-1 tvg-name="东森超视" group-title="台湾频道,#genre#",东森超视
+http://211.23.114.106:8525/http/60.251.39.91:8081/hls/64/806/ch14.m3u8
+#EXTINF:-1 tvg-name="东森综合" group-title="台湾频道,#genre#",东森综合
+http://211.23.114.106:8524/http/60.251.39.91:8081/hls/63/805/ch12.m3u8
+#EXTINF:-1 tvg-name="三立都会" group-title="台湾频道,#genre#",三立都会
+http://211.23.114.106:8522/http/60.251.39.91:8081/hls/65/807/ch19.m3u8
+#EXTINF:-1 tvg-name="三立台湾" group-title="台湾频道,#genre#",三立台湾
+http://211.23.114.106:8521/http/60.251.39.91:8081/hls/65/807/ch20.m3u8
+#EXTINF:-1 tvg-name="八大综合" group-title="台湾频道,#genre#",八大综合
+http://211.23.114.106:8520/http/61.221.81.94:8088/hls/66/808/ch21.m3u8
+#EXTINF:-1 tvg-name="纬来综合" group-title="台湾频道,#genre#",纬来综合
+http://211.23.114.106:8518/http/61.221.81.94:8088/hls/68/810/ch32.m3u8
+#EXTINF:-1 tvg-name="年代新闻" group-title="台湾频道,#genre#",年代新闻
+http://211.23.114.106:8517/http/60.251.39.91:8081/hls/67/809/ch27.m3u8
+#EXTINF:-1 tvg-name="龙华戏剧" group-title="台湾频道,#genre#",龙华戏剧
+http://211.23.114.106:8534/http/59.120.8.187:8066/hls/210/10010/cstv10.m3u8
+#EXTINF:-1 tvg-name="纬来戏剧" group-title="台湾频道,#genre#",纬来戏剧
+http://211.23.114.106:8533/http/60.251.39.91:8081/hls/69/811/ch33.m3u8
+#EXTINF:-1 tvg-name="八大戏剧" group-title="台湾频道,#genre#",八大戏剧
+http://211.23.114.106:8531/http/60.251.39.91:8081/hls/66/808/ch23.m3u8
+#EXTINF:-1 tvg-name="东森戏剧" group-title="台湾频道,#genre#",东森戏剧
+http://211.23.114.106:8530/http/60.251.39.91:8081/hls/64/806/ch13.m3u8
+#EXTINF:-1 tvg-name="大爱" group-title="国外频道,#genre#",MuchTV
+http://211.23.114.106:8529/http/60.251.39.91:8081/hls/72/814/ch45.m3u8
+#EXTINF:-1 tvg-name="大爱" group-title="国外频道,#genre#",龙华卡通
+http://211.23.114.106:8528/http/59.120.8.187:8066/hls/210/10013/cstv13.m3u8
+#EXTINF:-1 tvg-name="大爱" group-title="国外频道,#genre#",ANIMAX
+http://211.23.114.106:8516/http/61.221.81.94:8088/hls/70/812/ch39.m3u8
+#EXTINF:-1 tvg-name="大爱" group-title="国外频道,#genre#",亚洲旅游
+http://211.23.114.106:8513/http/61.221.81.94:8088/hls/76/818/ch61.m3u8
+#EXTINF:-1 tvg-name="大爱" group-title="国外频道,#genre#",动物星球
+http://211.23.114.106:8512/http/61.221.81.94:8088/hls/70/812/ch37.m3u8
+#EXTINF:-1 tvg-name="大爱" group-title="国外频道,#genre#",HBO HD
+http://211.23.114.106:8511/http/116.50.42.19:8081/hls/71/813/ch41.m3u8
+#EXTINF:-1 tvg-name="大爱" group-title="国外频道,#genre#",Discovery
+http://211.23.114.106:8510/http/61.221.81.94:8088/hls/71/813/ch44.m3u8
+#EXTINF:-1 tvg-name="大爱" group-title="国外频道,#genre#",国家地理
+http://211.23.114.106:8509/http/61.221.81.94:8088/hls/61/803/ch01.m3u8
+#EXTINF:-1 tvg-name="大爱" group-title="国外频道,#genre#",好消息
+http://211.23.114.106:8508/http/61.221.81.94:8088/hls/74/816/ch53.m3u8
+#EXTINF:-1 tvg-name="大爱" group-title="国外频道,#genre#",大爱
+http://211.23.114.106:8507/http/61.221.81.94:8088/hls/73/815/ch52.m3u8
+#EXTINF:-1 tvg-name="时尚频道" group-title="国外频道,#genre#",时尚频道
+http://lb.streaming.sk/fashiontv/stream/chunklist_w1702070444.m3u8
+#EXTINF:-1 tvg-name="龙华偶像" group-title="国外频道,#genre#",龙华偶像
+http://211.23.114.106:8579/http/59.120.8.187:8066/hls/210/10012/cstv12.m3u8
+#EXTINF:-1 tvg-name="东风卫视" group-title="国外频道,#genre#",东风卫视
+http://211.23.114.106:8578/http/60.251.39.91:8081/hls/68/810/ch31.m3u8
+#EXTINF:-1 tvg-name="旅游生活" group-title="国外频道,#genre#",旅游生活
+http://211.23.114.106:8570/http/61.221.81.94:8088/hls/70/812/ch38.m3u8
+#EXTINF:-1 tvg-name="ELEVEN SPORTS 2" group-title="国外频道,#genre#",ELEVEN SPORTS 2
+http://211.23.114.106:8567/http/59.120.8.187:8078/hls/26/80/esport2.m3u8
+#EXTINF:-1 tvg-name="ELEVEN SPORTS 1" group-title="国外频道,#genre#",ELEVEN SPORTS 1
+http://211.23.114.106:8566/http/59.120.8.187:8078/hls/25/80/esport.m3u8
+#EXTINF:-1 tvg-name="博斯运动I" group-title="国外频道,#genre#",博斯运动I
+http://211.23.114.106:8564/http/59.120.8.187:8066/hls/210/10018/cstv18.m3u8
+#EXTINF:-1 tvg-name="纬来体育" group-title="国外频道,#genre#",纬来体育
+http://211.23.114.106:8563/http/59.120.8.187:8081/hls/67/809/ch28.m3u8
+#EXTINF:-1 tvg-name="纬来育乐" group-title="国外频道,#genre#",纬来育乐
+http://211.23.114.106:8562/http/116.50.42.19:8081/hls/68/810/ch30.m3u8
+#EXTINF:-1 tvg-name="FOX频道" group-title="国外频道,#genre#",FOX频道
+http://211.23.114.106:8561/http/116.50.42.19:8081/hls/61/803/ch02.m3u8
+#EXTINF:-1 tvg-name="FOXmovies" group-title="国外频道,#genre#",FOXmovies
+http://211.23.114.106:8560/http/116.50.42.19:8081/hls/62/804/ch08.m3u8
+#EXTINF:-1 tvg-name="Cinemax" group-title="国外频道,#genre#",Cinemax
+http://211.23.114.106:8559/http/116.50.42.19:8081/hls/71/813/ch42.m3u8
+#EXTINF:-1 tvg-name="AXN电影" group-title="国外频道,#genre#",AXN电影
+http://211.23.114.106:8558/http/116.50.42.19:8081/hls/71/813/ch43.m3u8
+#EXTINF:-1 tvg-name="龙华电影台" group-title="国外频道,#genre#",龙华电影台
+http://211.23.114.106:8556/http/116.50.42.19:8066/hls/210/10014/cstv14.m3u8
+#EXTINF:-1 tvg-name="纬来电影台" group-title="国外频道,#genre#",纬来电影台
+http://211.23.114.106:8555/http/116.50.42.19:8081/hls/69/811/ch35.m3u8
+#EXTINF:-1 tvg-name="好莱坞电影" group-title="国外频道,#genre#",好莱坞电影
+http://211.23.114.106:8554/http/116.50.42.19:8081/hls/74/816/ch55.m3u8
+#EXTINF:-1 tvg-name="卫视电影台" group-title="国外频道,#genre#",卫视电影台
+http://211.23.114.106:8553/http/116.50.42.19:8081/hls/62/804/ch07.m3u8
+#EXTINF:-1 tvg-name="NHK新闻" group-title="国外频道,#genre#",NHK新闻
+http://211.23.114.106:8552/http/116.50.42.19:8081/hls/62/804/ch06.m3u8
+#EXTINF:-1 tvg-name="Bloomberg" group-title="国外频道,#genre#",Bloomberg
+http://211.23.114.106:8551/http/116.50.42.19:8078/hls/43/80/bloomber.m3u8
+#EXTINF:-1 tvg-name="CNBC新闻" group-title="国外频道,#genre#",CNBC新闻
+http://211.23.114.106:8550/http/116.50.42.19:8078/hls/24/80/cnbc90.m3u8
+#EXTINF:-1 tvg-name="WAKUWAKU JAPAN" group-title="国外频道,#genre#",WAKUWAKU JAPAN
+http://211.23.114.106:8538/http/60.251.39.91:8081/hls/61/803/ch03.m3u8
+#EXTINF:-1 tvg-name="未来日本" group-title="国外频道,#genre#",未来日本
+http://211.23.114.106:8537/http/60.251.39.91:8081/hls/69/811/ch34.m3u8
+#EXTINF:-1 tvg-name="八大第一" group-title="国外频道,#genre#",八大第一
+http://211.23.114.106:8536/http/61.221.81.94:8088/hls/66/808/ch22.m3u8
+#EXTINF:-1 tvg-name="龙华日韩" group-title="国外频道,#genre#",龙华日韩
+http://211.23.114.106:8535/http/59.120.8.187:8066/hls/210/10011/cstv11.m3u8
+#EXTINF:-1 tvg-name="NTV" group-title="日本频道,#genre#",NTV
+https://ntv2.mov3.co/hls/ntv.m3u8
