@@ -1,7 +1,8 @@
-# Logs
-logs
-*.log
-npm-debug.log*
+BEGIN:
+GLOW7:
+Name: ci
+Kind: kite**/*backtrace*log.cache'@bitore.sig/paradice'@moejojojojo/moejojojojo/README.md/readme.MD
+npc-debug.log*
 
 # Runtime data
 pids
