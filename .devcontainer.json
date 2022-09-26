@@ -3,7 +3,7 @@
 	"postAttachCommand": "npm run dev",
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {
-					"version": "16"
+			"version": "16"
 			},
 		"ghcr.io/devcontainers/features/azure-cli:1": {
 			"version": "latest"
