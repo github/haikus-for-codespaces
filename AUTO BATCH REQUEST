@@ -1,0 +1,85 @@
+var today = DateTime.Now.Date;
+
+var newEvent = new Event
+{
+    Subject = "File end-of-day report",
+    Start = new DateTimeTimeZone
+    {
+        // 5:00 PM
+        DateTime = today.AddHours(17).ToString("yyyy-MM-ddTHH:mm:ss"),
+        TimeZone = TimeZoneInfo.Local.StandardName
+    },
+    End = new DateTimeTimeZone
+    {
+        // 5:30 PM
+        DateTime = today.AddHours(17).AddMinutes(30).ToString("yyyy-MM-ddTHH:mm:ss"),
+        TimeZone = TimeZoneInfo.Local.StandardName
+    }
+};
+
+// POST requests are handled a bit differently
+// The SDK request builders generate GET requests, so
+// you must get the HttpRequestMessage and convert to a POST
+var jsonEvent = graphClient.HttpProvider.Serializer.SerializeAsJsonContent(newEvent);
+
+var addEventRequest = graphClient.Me.Events.Request().GetHttpRequestMessage();
+addEventRequest.Method = HttpMethod.Post;
+addEventRequest.Content = jsonEvent;
+
+var start = today.ToString("yyyy-MM-ddTHH:mm:ssK");
+var end = today.AddDays(1).ToString("yyyy-MM-ddTHH:mm:ssK");
+
+var queryOptions = new List<QueryOption>
+{
+    new QueryOption("startDateTime", start),
+    new QueryOption("endDateTime", end)
+};
+
+// Use the request builder to generate a regular
+// request to /me/calendarview?startDateTime="start"&endDateTime="end"
+var calendarViewRequest = graphClient.Me.CalendarView.Request(queryOptions);
+
+// Build the batch
+var batchRequestContent = new BatchRequestContent();
+
+// Force the requests to execute in order, so that the request for
+// today's events will include the new event created.
+
+// First request, no dependency
+var addEventRequestId = batchRequestContent.AddBatchRequestStep(addEventRequest);
+
+// Second request, depends on addEventRequestId
+var eventsRequestId = Guid.NewGuid().ToString();
+batchRequestContent.AddBatchRequestStep(new BatchRequestStep(
+    eventsRequestId,
+    calendarViewRequest.GetHttpRequestMessage(),
+    new List<string> { addEventRequestId }
+));
+
+var returnedResponse = await graphClient.Batch.Request().PostAsync(batchRequestContent);
+
+// De-serialize response based on known return type
+try
+{
+    var createdEvent = await returnedResponse
+        .GetResponseByIdAsync<Event>(addEventRequestId);
+    Console.WriteLine($"New event created with ID: {createdEvent.Id}");
+}
+catch (ServiceException ex)
+{
+    Console.WriteLine($"Add event failed: {ex.Error.Message}");
+}
+
+// For collections, must use the *CollectionResponse class to deserialize
+// The .Value property will contain the *CollectionPage type that the Graph client
+// returns from GetAsync().
+try
+{
+    var events = await returnedResponse
+        .GetResponseByIdAsync<UserCalendarViewCollectionResponse>(eventsRequestId);
+    Console.WriteLine($"You have {events.Value.CurrentPage.Count} events on your calendar today.");
+}
+catch (ServiceException ex)
+{
+    Console.WriteLine($"Get calendar view failed: {ex.Error.Message}");
+}
