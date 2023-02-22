@@ -1,0 +1,48 @@
+{
+    "githubPullRequests.ignoredPullRequestBranches": [
+        " "DU6795621
+        ": "============================== Log file: C:\Jts\ibgateway\1021\blaiklejalpcohlmilbfmockcfhdfeidaojjghgb\ibgateway.20230215.085412.ibgzenc =============================
+        2023-02-15 08:54:12.896 [IH] INFO  [JTS-PostAuthenticateS5-37] - Created on: 20230215
+        2023-02-15 08:54:12.897 [IH] INFO  [JTS-PostAuthenticateS5-37] - ------------------------------- IB GATEWAY RESTART --------------------------------
+        2023-02-15 08:54:12.898 [IH] INFO  [JTS-PostAuthenticateS5-37] - Build 10.21.1o, Feb 14, 2023 5:00:24 PM
+        2023-02-15 08:54:12.898 [IH] INFO  [JTS-PostAuthenticateS5-37] - Started on 20230215-16:54:12
+        2023-02-15 08:54:12.899 [IH] INFO  [JTS-PostAuthenticateS5-37] - Default timezone:America/Los_Angeles name:Pacific Standard Time dst:3600000
+        2023-02-15 08:54:12.899 [IH] INFO  [JTS-PostAuthenticateS5-37] - java version = 1.8.0_202
+        2023-02-15 08:54:12.899 [IH] INFO  [JTS-PostAuthenticateS5-37] - sun.arch.data.model = 64
+        2023-02-15 08:54:12.899 [IH] INFO  [JTS-PostAuthenticateS5-37] - os = Windows 8.1
+        2023-02-15 08:54:12.900 [IH] INFO  [JTS-PostAuthenticateS5-37] - os version = 6.3
+        2023-02-15 08:54:12.900 [IH] INFO  [JTS-PostAuthenticateS5-37] - os architecture = 64
+        2023-02-15 08:54:12.900 [IH] INFO  [JTS-PostAuthenticateS5-37] - runtime = Java(TM) SE Runtime Environment
+        2023-02-15 08:54:12.900 [IH] INFO  [JTS-PostAuthenticateS5-37] - vendor = Oracle Corporation
+        2023-02-15 08:54:12.900 [IH] INFO  [JTS-PostAuthenticateS5-37] - vm name = Java HotSpot(TM) 64-Bit Server VM
+        2023-02-15 08:54:12.901 [IH] INFO  [JTS-PostAuthenticateS5-37] - username = 'MeccaExpressInc'
+        2023-02-15 08:54:12.949 [IH] INFO  [AWT-EventQueue-0] - jtsLookAndFeel uninitialized
+        2023-02-15 08:54:12.955 [IH] INFO  [AWT-EventQueue-0] - JtsLookAndFeel initialized
+        2023-02-15 08:54:12.970 [IH] INFO  [AWT-EventQueue-0] - Current LAF: TWS LAF
+        2023-02-15 08:54:14.127 [IH] INFO  [JTS-PostAuthenticateS5-37] - LOGIN_TIME_MONITOR	 false 08:54:14:126 since start = 83753 thread delay = 83753 global delay = 0 tag=Step7, cls=AbstractFixLogonHandler method=setDispatcherAndStartFixLogon
+        2023-02-15 08:54:14.127 [IH] INFO  [JTS-PostAuthenticateS5-37] - Changing state for connection from PRELOGON to PRELOGON in B 364693321: SessionSocket:5
+        2023-02-15 08:54:14.131 [IH] INFO  [JTS-LogonDispatcherS5-39] - Starting dispatcher thread [sessionID=5]...
+        2023-02-15 08:54:14.149 [IH] INFO  [JTS-PostAuthenticateS5-37] - initFixLogonTimezone: deviceTimeZoneStr=America/Los_Angeles
+        2023-02-15 08:54:14.254 [IH] INFO  [JTS-PostAuthenticateS5-37] - Changing state for connection from PRELOGON to LOGON in B 364693321: SessionSocket:5
+        2023-02-15 08:54:14.254 [IH] INFO  [JTS-PostAuthenticateS5-37] - Skipping sending pre-logon message (ONELOGON is enabled). Sending logon message...
+        2023-02-15 08:54:14.542 [IH] INFO  [JTS-PostAuthenticateS5-37] - FixLogonSendable: usedSsl=true
+        2023-02-15 08:54:14.638 [IH] INFO  [JTS-PostAuthenticateS5-37] - JTSConnection.sendMessage(): sending message non-compressed: msg=a7 hasSensitiveData=true useSsl=true hasEncryptor=false
+        2023-02-15 08:54:14.701 [IH] INFO  [JTS-PostAuthenticateS5-37] - Logon message sent successfully.
+        2023-02-15 08:54:14.702 [IH] INFO  [JTS-PostAuthenticateS5-37] - Changing state for connection from LOGON to FIX_SESSION_REQUEST in B 364693321: SessionSocket:5
+        2023-02-15 08:54:14.702 [IH] INFO  [JTS-PostAuthenticateS5-37] - JTSConnection - Encryption Properties: useSsl=true, Encryptor Available=false
+        2023-02-15 08:54:14.703 [IH] INFO  [JTS-PostAuthenticateS5-37] - Clear long time mode on PRELOGON
+        2023-02-15 08:54:14.707 [IH] INFO  [JTS-PostAuthenticateS5-37] - Start ping with 1000 for JTS-CCPPingS5-40
+        2023-02-15 08:54:14.714 [IH] INFO  [JTS-CCPPingS5-40] - Starting ping thread
+        2023-02-15 08:54:14.915 [IH] INFO  [JTS-LogonDispatcherS5-39] - Received login
+        2023-02-15 08:54:14.915 [IH] INFO  [JTS-LogonDispatcherS5-39] - ### onFixLogin
+        2023-02-15 08:54:14.916 [IH] INFO  [JTS-LogonDispatcherS5-39] - Processing login [sessionId=5]...
+        2023-02-15 08:54:14.929 [IH] INFO  [JTS-LogonDispatcherS5-39] - UserCredentials.setFrom() [this=1585633075,other=1585633075,old=63ed0e30.03d7,new=63ed0e30.03d7].
+        2023-02-15 08:54:14.931 [IH] INFO  [JTS-LogonDispatcherS5-39] - createOrRenameToNewStyleUserDirectory: create newDir=C:\Jts\ibgateway\1021\fnpblojhhgciopbbfjgijhmbibjgbekbdinoimdo
+        2023-02-15 08:54:14.932 [IH] INFO  [JTS-LogonDispatcherS5-39] - performLogSwitch() [force=true]
+        2023-02-15 08:54:14.936 [IH] INFO  [JTS-LogonDispatcherS5-39] - Switching to a new encrypted log...
+        "createCustomerProfileRequest": {
+                "merchantAuthentication": {
+                    "name": "7arMhH954",
+                    "transactionKey": "8L5SdG9N85xrcK5R""
+    ]
+}

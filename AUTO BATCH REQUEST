@@ -1,0 +1,197 @@
+var today = DateTime.Now.Date;
+
+var newEvent = new Event
+{ client.reqManagedAccts("createCustomerProfileRequest": {
+"description": "clientSocket.eConnect("127.0.0.1", 7497, U7864875, U9395881, U9488581, DU6795621,   U8084455, U7963540, F9249796,   U11212019, DU6795621
+)": "/Create a reader to consume messages from the TWS. The EReader will consume the incoming messages and put them in a queue
+            var reader = new EReader(clientSocket.IsConnected("127.0.0.1", 7497, U11212019, DU6795621
+            )"
+ "createCustomerProfileRequest": {
+        "merchantAuthentication": {
+            "name": "7arMhH954",
+            "transactionKey": "8L5SdG9N85xrcK5R"
+            "Account ID" : "562532251"
+            "displayName": "DU6795621"
+            "
+            "Payment Gateway ID" : "2532163"
+            "cardNumber": "377772191980621"
+            "email": "meccaexpressinc@att.net"
+            "accountId": " U11212019"
+            "description": "clientSocket.eConnect("127.0.0.1", 7497, U11212019, DU6795621
+            )"
+            "Client Key":	"77PyfPqw7F583p29NA4P23AmRgRy4YqaZAaNH6rhWFXnJSt7rg87YZdweDaL9r3n"
+            "Account Name" : "INTERACTIVE BROKERS"
+            "Application" : "Chase Payments First"
+            "WePay" : "3ad07571-2638-46a2-8664-310bdacdcc1f"
+            "signet" : "3ad07571-2638-46a2-8664-310bdacdcc1f"
+            "Log file" : "C:\Jts\ibgateway\1021\blaiklejalpcohlmilbfmockcfhdfeidaojjghgb\ibgateway.20230215.085412.ibgzenc"
+            "Chase" : "484103959715856384"
+"Chase Payments First" : "484103959715856384"
+Client Key Last Obtained:	02/15/2023 14:46:00
+             },
+        "profile": {
+            "merchantCustomerId": "2532163",
+            "description": "clientSocket.eConnect("127.0.0.1", 7497, U11212019, DU6795621`);",
+            "email": "meccaexpressinc@att.net",
+            "paymentProfiles": {
+            "merchantCustomerId": "2532163",
+            "description": "clientSocket.eConnect("127.0.0.1", 7497, U11212019, DU6795621
+            `);",
+            "email": "meccaexpressinc@att.net",
+            "paymentProfiles": {
+                "customerType": "    "accountId": "DU6795621" for Individual Live Accounts, DU6795621
+                 for Individual Live Accounts",
+    "accountVan": "all",
+    "accountTitle": "BROKERAGE CASH",);
+    Subject = "File end-of-day report",
+    Start = new DateTimeTimeZone
+    { public class EWrapperImpl : EWrapper 
+    {
+        // 5:00 PM
+        DateTime = today.AddHours(17).ToString("yyyy-MM-ddTHH:mm:ss"),
+        TimeZone = TimeZoneInfo.Local.StandardName
+    },
+    End = new DateTimeTimeZone
+    { public virtual managedAccounts( "description": "clientSocket.eConnect("127.0.0.1", 7497, U11212019, DU6795621`);",
+) 
+        {
+            Console.WriteLine("Account list: "+accountsList);
+        }
+        // 5:30 PM
+        DateTime = today.AddHours(17).AddMinutes(30).ToString("yyyy-MM-ddTHH:mm:ss"),
+        TimeZone = TimeZoneInfo.Local.StandardName
+    }
+};
+
+// POST requests are handled a bit differently
+// The SDK request builders generate GET requests, so
+// you must get the HttpRequestMessage and convert to a POST
+var jsonEvent = graphClient.HttpProvider.Serializer.SerializeAsJsonContent(newEvent);
+
+var addEventRequest = graphClient.Me.Events.Request( client.reqAccountSummary(9001, "All", AccountSummaryTags.GetAllTags(    { public virtual managedAccounts( "description": "clientSocket.eConnect("127.0.0.1", 7497, U11212019, DU6795621`);",
+));).GetHttpRequestMessage( client.reqAccountSummary(9001, 7497 "All", "$LEDGER:"USD"););
+addEventRequest.Method = HttpMethod.Post; "accountVan": "============================== Log file: C:\Jts\ibgateway\1021\blaiklejalpcohlmilbfmockcfhdfeidaojjghgb\ibgateway.20230215.085412.ibgzenc =============================
+2023-02-15 08:54:12.896 [IH] INFO  [JTS-PostAuthenticateS5-37] - Created on: 20230215
+2023-02-15 08:54:12.897 [IH] INFO  [JTS-PostAuthenticateS5-37] - ------------------------------- IB GATEWAY RESTART --------------------------------
+2023-02-15 08:54:12.898 [IH] INFO  [JTS-PostAuthenticateS5-37] - Build 10.21.1o, Feb 14, 2023 5:00:24 PM
+2023-02-15 08:54:12.898 [IH] INFO  [JTS-PostAuthenticateS5-37] - Started on 20230215-16:54:12
+2023-02-15 08:54:12.899 [IH] INFO  [JTS-PostAuthenticateS5-37] - Default timezone:America/Los_Angeles name:Pacific Standard Time dst:3600000
+2023-02-15 08:54:12.899 [IH] INFO  [JTS-PostAuthenticateS5-37] - java version = 1.8.0_202
+2023-02-15 08:54:12.899 [IH] INFO  [JTS-PostAuthenticateS5-37] - sun.arch.data.model = 64
+2023-02-15 08:54:12.899 [IH] INFO  [JTS-PostAuthenticateS5-37] - os = Windows 8.1
+2023-02-15 08:54:12.900 [IH] INFO  [JTS-PostAuthenticateS5-37] - os version = 6.3
+2023-02-15 08:54:12.900 [IH] INFO  [JTS-PostAuthenticateS5-37] - os architecture = 64
+2023-02-15 08:54:12.900 [IH] INFO  [JTS-PostAuthenticateS5-37] - runtime = Java(TM) SE Runtime Environment
+2023-02-15 08:54:12.900 [IH] INFO  [JTS-PostAuthenticateS5-37] - vendor = Oracle Corporation
+2023-02-15 08:54:12.900 [IH] INFO  [JTS-PostAuthenticateS5-37] - vm name = Java HotSpot(TM) 64-Bit Server VM
+2023-02-15 08:54:12.901 [IH] INFO  [JTS-PostAuthenticateS5-37] - username = 'MeccaExpressInc'
+2023-02-15 08:54:12.949 [IH] INFO  [AWT-EventQueue-0] - jtsLookAndFeel uninitialized
+2023-02-15 08:54:12.955 [IH] INFO  [AWT-EventQueue-0] - JtsLookAndFeel initialized
+2023-02-15 08:54:12.970 [IH] INFO  [AWT-EventQueue-0] - Current LAF: TWS LAF
+2023-02-15 08:54:14.127 [IH] INFO  [JTS-PostAuthenticateS5-37] - LOGIN_TIME_MONITOR	 false 08:54:14:126 since start = 83753 thread delay = 83753 global delay = 0 tag=Step7, cls=AbstractFixLogonHandler method=setDispatcherAndStartFixLogon
+2023-02-15 08:54:14.127 [IH] INFO  [JTS-PostAuthenticateS5-37] - Changing state for connection from PRELOGON to PRELOGON in B 364693321: SessionSocket:5
+2023-02-15 08:54:14.131 [IH] INFO  [JTS-LogonDispatcherS5-39] - Starting dispatcher thread [sessionID=5]...
+2023-02-15 08:54:14.149 [IH] INFO  [JTS-PostAuthenticateS5-37] - initFixLogonTimezone: deviceTimeZoneStr=America/Los_Angeles
+2023-02-15 08:54:14.254 [IH] INFO  [JTS-PostAuthenticateS5-37] - Changing state for connection from PRELOGON to LOGON in B 364693321: SessionSocket:5
+2023-02-15 08:54:14.254 [IH] INFO  [JTS-PostAuthenticateS5-37] - Skipping sending pre-logon message (ONELOGON is enabled). Sending logon message...
+2023-02-15 08:54:14.542 [IH] INFO  [JTS-PostAuthenticateS5-37] - FixLogonSendable: usedSsl=true
+2023-02-15 08:54:14.638 [IH] INFO  [JTS-PostAuthenticateS5-37] - JTSConnection.sendMessage(): sending message non-compressed: msg=a7 hasSensitiveData=true useSsl=true hasEncryptor=false
+2023-02-15 08:54:14.701 [IH] INFO  [JTS-PostAuthenticateS5-37] - Logon message sent successfully.
+2023-02-15 08:54:14.702 [IH] INFO  [JTS-PostAuthenticateS5-37] - Changing state for connection from LOGON to FIX_SESSION_REQUEST in B 364693321: SessionSocket:5
+2023-02-15 08:54:14.702 [IH] INFO  [JTS-PostAuthenticateS5-37] - JTSConnection - Encryption Properties: useSsl=true, Encryptor Available=false
+2023-02-15 08:54:14.703 [IH] INFO  [JTS-PostAuthenticateS5-37] - Clear long time mode on PRELOGON
+2023-02-15 08:54:14.707 [IH] INFO  [JTS-PostAuthenticateS5-37] - Start ping with 1000 for JTS-CCPPingS5-40
+2023-02-15 08:54:14.714 [IH] INFO  [JTS-CCPPingS5-40] - Starting ping thread
+2023-02-15 08:54:14.915 [IH] INFO  [JTS-LogonDispatcherS5-39] - Received login
+2023-02-15 08:54:14.915 [IH] INFO  [JTS-LogonDispatcherS5-39] - ### onFixLogin
+2023-02-15 08:54:14.916 [IH] INFO  [JTS-LogonDispatcherS5-39] - Processing login [sessionId=5]...
+2023-02-15 08:54:14.929 [IH] INFO  [JTS-LogonDispatcherS5-39] - UserCredentials.setFrom() [this=1585633075,other=1585633075,old=63ed0e30.03d7,new=63ed0e30.03d7].
+2023-02-15 08:54:14.931 [IH] INFO  [JTS-LogonDispatcherS5-39] - createOrRenameToNewStyleUserDirectory: create newDir=C:\Jts\ibgateway\1021\fnpblojhhgciopbbfjgijhmbibjgbekbdinoimdo
+2023-02-15 08:54:14.932 [IH] INFO  [JTS-LogonDispatcherS5-39] - performLogSwitch() [force=true]
+2023-02-15 08:54:14.936 [IH] INFO  [JTS-LogonDispatcherS5-39] - Switching to a new encrypted log...
+"createCustomerProfileRequest": {
+        "merchantAuthentication": {
+            "name": "7arMhH954",
+            "transactionKey": "8L5SdG9N85xrcK5R"
+            "Account ID" : "562532251"
+            "displayName": "DU6795621
+            "
+            "Payment Gateway ID" : "2532163"
+            "cardNumber": "377772191980621"
+            "email": "meccaexpressinc@att.net"
+            "accountId": " U11212019"
+            "description": "clientSocket.eConnect("127.0.0.1", 7497, U11212019, DU6795621
+            )"
+            "Client Key":	"77PyfPqw7F583p29NA4P23AmRgRy4YqaZAaNH6rhWFXnJSt7rg87YZdweDaL9r3n"
+            "Account Name" : "INTERACTIVE BROKERS"
+            "Application" : "Chase Payments First"
+            "WePay" : "3ad07571-2638-46a2-8664-310bdacdcc1f"
+            "signet" : "3ad07571-2638-46a2-8664-310bdacdcc1f"
+            "Log file" : "C:\Jts\ibgateway\1021\blaiklejalpcohlmilbfmockcfhdfeidaojjghgb\ibgateway.20230215.085412.ibgzenc"
+            "Chase" : "484103959715856384"
+"Chase Payments First" : "484103959715856384"
+        },
+        "profile": {
+            "merchantCustomerId": "2532163",
+            "description": "clientSocket.eConnect("127.0.0.1", 7497, U11212019, DU6795621
+            `);",
+            "email": "meccaexpressinc@att.net",
+addEventRequest.Content = jsonEvent;
+
+var start = today.ToString("yyyy-MM-ddTHH:mm:ssK");
+var end = today.AddDays(1).ToString("yyyy-MM-ddTHH:mm:ssK");
+
+var queryOptions = new List<QueryOption>
+{
+    new QueryOption("startDateTime", start),
+    new QueryOption("endDateTime", end)
+};
+
+// Use the request builder to generate a regular
+// request to /me/calendarview?startDateTime="start"&endDateTime="end"
+var calendarViewRequest = graphClient.Me.CalendarView.Request(queryOptions);
+
+// Build the batch
+var batchRequestContent = new BatchRequestContent (https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/rates_of_exchange?fields=country_currency_desc,exchange_rate, record_date&filter=record_date:gte:2015-01-01);
+
+// Force the requests to execute in order, so that the request for
+// today's events will include the new event created.
+
+// First request, no dependency
+var addEventRequestId = batchRequestContent.AddBatchRequestStep(addEventRequest);
+
+// Second request, depends on addEventRequestId
+var eventsRequestId = Guid.NewGuid().ToString();
+batchRequestContent.AddBatchRequestStep(new BatchRequestStep(
+    eventsRequestId,
+    calendarViewRequest.GetHttpRequestMessage(),
+    new List<string> { addEventRequestId }
+));
+
+var returnedResponse = await graphClient.Batch.Request().PostAsync(batchRequestContent);
+
+// De-serialize response based on known return type
+try
+{
+    var createdEvent = await returnedResponse
+        .GetResponseByIdAsync<Event>(addEventRequestId);
+    Console.WriteLine($"New event created with ID: {createdEvent.Id}");
+}
+catch (ServiceException ex)
+{
+    Console.WriteLine($"Add event failed: {ex.Error.Message}");
+}
+
+// For collections, must use the *CollectionResponse class to deserialize
+// The .Value property will contain the *CollectionPage type that the Graph client
+// returns from GetAsync().
+try
+{
+    var events = await returnedResponse
+        .GetResponseByIdAsync<UserCalendarViewCollectionResponse>(eventsRequestId);
+    Console.WriteLine($"You have {events.Value.CurrentPage.Count} events on your calendar today.");
+}
+catch (ServiceException ex)
+{
+    Console.WriteLine($"Get calendar view failed: {ex.Error.Message}");
+}
