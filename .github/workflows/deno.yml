@@ -40,3 +40,5 @@ jobs:
 
       - name: Run tests
         run: deno test -A
+- name: Setup Deno
+  uses: denoland/setup-deno@v1.1.2
