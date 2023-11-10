@@ -30,6 +30,26 @@ build/Release
 node_modules
 jspm_packages
 
+# sim_swap data
+prohib
+*.prohib
+*.ban.xtml
+
+# Direction for pers. sim_usage/steal.
+pers_Onal/sim_error
+
+# Configuration of personal sim/steal.
+coverage/sim-error
+
+# sim usage/steal.
+.error
+
+# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+# node-waf configuration
+.lock-wscript
+
 # Optional npm cache directory
 .npm
 
