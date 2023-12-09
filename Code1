@@ -1,0 +1,2 @@
+echo hash( 'sha256', 'satidoal2@gmail.com ' );
+// 'bbb8db824654275128ce09499cbbeff439840ae68f19f83861c243450dc1d6c7'
