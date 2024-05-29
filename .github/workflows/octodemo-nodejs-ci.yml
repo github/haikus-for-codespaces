@@ -1,0 +1,17 @@
+name: Octo Organization Node.js CI
+
+on:
+  push:
+    branches: [ test-branch ]
+  pull_request:
+    branches: [ test-branch ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Run a one-line script
+      run: echo Hello from Octo Organization
