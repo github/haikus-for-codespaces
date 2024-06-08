@@ -9,7 +9,9 @@
       <li>our story</li>
       </ul>
     
-    <title><h1>Wigglz Premium Pet Food</h1></title>
+    <title>
+    <h1>Wigglz Premium Pet Food</h1>
+    </title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="main.css" />
     <h2>Wigglz Pet Food</h2>
