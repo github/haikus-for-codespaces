@@ -1,0 +1,171 @@
+import telebot
+import requests
+import time
+import re
+import threading
+from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+TOKEN = '7455891372:AAFA2Qob9RAvxjOyPPG6O-SRXc5k-Z7b-BQ'
+bot = telebot.TeleBot(TOKEN)
+
+# قائمة المستخدمين الذين يمكنهم إدخال أي رقم
+allowed_any_number_users = [5211520354, 5814912767, 6507847901, 6169029930, 5101721659, 5437138094]
+
+# قائمة المستخدمين المسموح لهم
+allowed_users = [5211520354, 5814912767]
+
+# قائمة أرقام الهواتف المسموح بها
+allowed_phones = ['0551234567', '0557654321']
+
+# متغيرات عالمية للاحتفاظ بالتوكن والرقم الشخصي
+global_access_token = None
+global_phone_number = None
+
+# قائمة لحفظ الأرقام المسجلة
+registered_numbers = []
+
+def is_user_allowed(user_id):
+    return user_id in allowed_any_number_users or user_id in allowed_users
+
+def is_phone_allowed(user_id, phone_number):
+    if user_id in allowed_any_number_users:
+        return True
+    elif user_id in allowed_users:
+        return phone_number in allowed_phones
+    return False
+
+def delete_message(chat_id, message_id, delay):
+    time.sleep(delay)
+    bot.delete_message(chat_id, message_id)
+
+def send_welcome(message):
+    bot.reply_to(message, "أنت غير مشترك في بوت لطلب اشتراك تواصل معنا @imthebest997")
+
+@bot.message_handler(commands=['start', 'help'])
+def start(message):
+    send_welcome(message)
+
+@bot.message_handler(func=lambda message: re.fullmatch(r'05\d{8}', message.text))
+def handle_phone_number(message):
+    global global_phone_number
+    global_phone_number = message.text
+    user_id = message.from_user.id
+    if is_user_allowed(user_id):
+        if is_phone_allowed(user_id, global_phone_number):
+            if global_phone_number in registered_numbers:
+                bot.send_message(message.chat.id, "هذا الرقم مسجل بالفعل.")
+                send_final_request(message, global_access_token, global_phone_number)
+            else:
+                send_verification_code(message, global_phone_number)
+        else:
+            bot.send_message(message.chat.id, "عذرًا، رقم الهاتف غير مسموح به.")
+    else:
+        bot.send_message(message.chat.id, "عذرًا، لا يسمح لك باستخدام هذا البوت.")
+
+def send_verification_code(message, phone_number):
+    url = "https://ibiza.ooredoo.dz/auth/realms/ibiza/protocol/openid-connect/token"
+    payload = {
+        "client_id": "ibiza-app",
+        "grant_type": "password",
+        "mobile-number": phone_number,
+        "language": "AR"
+    }
+    headers = {
+        "User-Agent": "okhttp/4.9.3",
+        "Connection": "Keep-Alive",
+        "Accept-Encoding": "gzip",
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    response = requests.post(url, data=payload, headers=headers)
+    if "ROOGY" in response.text:
+        bot.send_message(message.chat.id, "💬 تم إرسال الرمز بنجاح ✅ يرجى نسخ أو كتابة الرمز المكون من 6 أرقام الذي تلقيته في رسالة 💬 على هاتفك 📱")
+        msg = bot.send_message(message.chat.id, "أدخل الرمز:")
+        msg = bot.send_message(message.chat.id, "💬")
+        bot.register_next_step_handler(msg, verify_code, phone_number)
+    else:
+        bot.send_message(message.chat.id, "فشل في إرسال الرمز. انتظر دقيقتين ثم أعد المحاولة 🕜.")
+
+def verify_code(message, phone_number):
+    global global_access_token
+    otp_code = message.text
+    url = "https://ibiza.ooredoo.dz/auth/realms/ibiza/protocol/openid-connect/token"
+    payload = {
+        "client_id": "ibiza-app",
+        "grant_type": "password",
+        "mobile-number": phone_number,
+        "language": "AR",
+        "otp": otp_code
+    }
+    headers = {
+        "User-Agent": "okhttp/4.9.3",
+        "Connection": "Keep-Alive",
+        "Accept-Encoding": "gzip",
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    response = requests.post(url, data=payload, headers=headers)
+    response_json = response.json()
+    if "access_token" in response_json:
+        global_access_token = response_json["access_token"]
+        registered_numbers.append(phone_number)
+        bot.send_message(message.chat.id, "تم التحقق من الرمز ✅ التوكن محفوظ.")
+        send_final_request(message, global_access_token, phone_number)
+    else:
+        bot.send_message(message.chat.id, "فشل تسجيل الدخول. يرجى المحاولة مرة أخرى 💬.")
+
+def send_final_request(message, access_token, phone_number):
+    url = 'https://ibiza.ooredoo.dz/api/v1/mobile-bff/users/mgm/info/apply'
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'language': 'AR',
+        'request-id': 'ed66ca07-7aee-4b97-952c-f0fcbc7eee0f',
+        'flavour-type': 'gms',
+        'Content-Type': 'application/json; charset=utf-8',
+        'Host': 'ibiza.ooredoo.dz',
+        'Connection': 'Keep-Alive',
+        'User-Agent': 'okhttp/4.9.3',
+    }
+
+    data = '{"skipMgm":false,"mgmValue":"0558494790"}'
+
+    for _ in range(5):
+        response = requests.post(url, headers=headers, data=data)
+        wait_message = bot.send_message(message.chat.id, "يرجى الانتظار 🔔")
+        threading.Thread(target=delete_message, args=(message.chat.id, wait_message.message_id, 1)).start()
+        time.sleep(1)
+
+    balance = check_balance(access_token)
+    if balance is not None:
+        bot.send_message(message.chat.id, f"🎉")
+        bot.send_message(message.chat.id, f"حـجم الأنـترنـت الأن هو💵 : {balance}")
+    else:
+        bot.send_message(message.chat.id, "فشل في استرجاع الرصيد.")
+
+def check_balance(access_token):
+    url = "https://ibiza.ooredoo.dz/api/v1/mobile-bff/users/balance"
+    
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'User-Agent': "okhttp/4.9.3",
+        'Connection': "Keep-Alive",
+        'Accept-Encoding': "gzip",
+        'language': "AR",
+        'request-id': "995fd8a7-853c-481d-b9c6-0a24295df76a",
+        'flavour-type': "gms"
+    }
+
+    response = requests.get(url, headers=headers)
+    response_json = response.json()
+
+    accounts = response_json.get('accounts', [])
+
+    for account in accounts:
+        if account.get('label') == 'رصيد التكفل المهدى':
+            return account.get('value', None)
+    return None
+
+while True:
+    try:
+        bot.polling(none_stop=True, interval=0, timeout=20)
+    except Exception as e:
+        print(f"Error: {e}")
+        time.sleep(15)
