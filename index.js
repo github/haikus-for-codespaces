@@ -12,3 +12,11 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port);
+console.log('Server started at http://localhost:' + port);
+// Assuming the haikus.json file contains an array of haikus
+const haikus = require('./haikus.json');
+
+// Accessing the imported data
+console.log(haikus); // Output: [ { title: 'Autumn', content: 'Leaves falling gently' }, { title: 'Ocean', content: 'Waves crashing on shore' }, ... ]
+// path: haikus.json
+// [
