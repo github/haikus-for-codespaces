@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "http://127.0.0.1:3002/cobacom.html",
+            "request": "launch",
+            "url": "http://127.0.0.1:3002/cobacom.html"
+        },
+        {
+            "type": "chrome",
+            "name": "http://127.0.0.1:3000/cobacom.html",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/cobacom.html"
+        }
+    ]
+}
