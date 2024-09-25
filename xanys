@@ -1,0 +1,12 @@
+xanys
+#![allow(unused)]
+fn main() {
+struct Etching {
+  divisibility: Option<u8>,
+  premine: Option<u128>,
+  rune: Option<Rune>,
+  spacers: Option<u32>,
+  symbol: Option<char>,
+  terms: Option<Terms>,
+}
+}
