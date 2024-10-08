@@ -1,0 +1,13 @@
+/* Place your CSS styles in this file */
+
+h1 {
+    text-align: center;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: normal;
+}
+
+.container {
+    width: 100%;
+    height: 200px;
+    background-color: #f2f2f2;
+}
