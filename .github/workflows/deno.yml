@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JhrokeCamera Plus</title>
+  <style>
+    /* Basic styling - you'll likely want to customize this */
+    #video-container {
+      display: flex;
+      width: 800px;
+      margin: 0 auto;
+    }
+
+    video {
+      width: 50%;
+      height: auto;
+    }
+
+    #controls {
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="video-container">
+    <video id="myVideo" autoplay muted></video>
+    <video id="remoteVideo" autoplay></video> 
+  </div>
+
+  <div id="controls">
+    <button id="startButton">Start Video</button>
+    <select id="cameraSelect">
+      <option value="">Select Camera</option>
+    </select>
+
+    <select id="voiceChanger">
+      <option value="">Voice Changer</option>
+      <option value="pitchUp">Pitch Up</option>
+      <option value="pitchDown">Pitch Down</option>
+    </select>
+
+    <select id="videoFilters">
+      <option value="">Apply Filter</option>
+      <option value="blur(5px)">Blur</option>
+      <option value="grayscale(100%)">Grayscale</option>
+      <option value="sepia(100%)">Sepia</option>
+    </select>
+
+    <button id="captureButton">Capture Image</button>
+  </div>
+
+  <script>
+    const myVideo = document.getElementById('myVideo');
+    const remoteVideo = document.getElementById('remoteVideo');
+    const startButton = document.getElementById('startButton');
+    const cameraSelect = document.getElementById('cameraSelect');
+    const voiceChanger = document.getElementById('voiceChanger');
+    const videoFilters = document.getElementById('videoFilters');
+    const captureButton = document.getElementById('captureButton');
+    let stream;
+
+    // --- Camera Selection ---
+    navigator.mediaDevices.enumerateDevices()
+      .then(devices => {
+        devices.forEach(device => {
+          if (device.kind === 'videoinput') {
+            const option = document.createElement('option');
+            option.value = device.deviceId;
+            option.text = device.label || `Camera ${cameraSelect.length + 1}`;
+            cameraSelect.appendChild(option);
+          }
+        });
+      })
+      .catch(err => {
+        console.error('Error accessing camera devices:', err);
+      });
+
+    cameraSelect.addEventListener('change', () => {
+      const selectedCameraId = cameraSelect.value;
+      if (stream) {
+        stopExistingStream(stream);
+      }
+      navigator.mediaDevices.getUserMedia({ video: { deviceId: selectedCameraId } })
+        .then(newStream => {
+          stream = newStream;
+          myVideo.srcObject = stream;
+        })
+        .catch(err => {
+          console.error('Error accessing camera:', err);
+        });
+    });
+
+    function stopExistingStream(stream) {
+      stream.getTracks().forEach(track => track.stop());
+    }
+    // --- End Camera Selection ---
+
+    // --- Start Video ---
+    startButton.addEventListener('click', startVideo);
+
+    function startVideo() {
+      navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        .then(newStream => {
+          stream = newStream;
+          myVideo.srcObject = stream;
+          // Start voice changer when video starts
+          startVoiceChanger(); 
+        })
+        .catch(err => {
+          console.error('Error accessing camera/microphone:', err);
+        });
+    }
+    // --- End Start Video ---
+
+    // --- Voice Changer (using Web Audio API) ---
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    let source;
+    let gainNode;
+
+    function startVoiceChanger() {
+      source = audioCtx.createMediaStreamSource(stream);
+      gainNode = audioCtx.createGain();
+      source.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+    }
+
+    voiceChanger.addEventListener('change', () => {
+      changeVoice(voiceChanger.value);
+    });
+
+    function changeVoice(effect) {
+      if (!source || !gainNode) return;
+
+      switch (effect) {
+        case 'pitchUp':
+          gainNode.gain.value = 2;
+          break;
+        case 'pitchDown':
+          gainNode.gain.value = 0.5;
+          break;
+        default:
+          gainNode.gain.value = 1;
+      }
+    }
+    // --- End Voice Changer ---
+
+    // --- Filter Application (using CSS filters) ---
+    videoFilters.addEventListener('change', () => {
+      const selectedFilter = videoFilters.value;
+      myVideo.style.filter = selectedFilter;
+    });
+    // --- End Filter Application ---
+
+    // --- Image Saving ---
+    captureButton.addEventListener('click', () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = myVideo.videoWidth;
+      canvas.height = myVideo.videoHeight;
+      canvas.getContext('2d').drawImage(myVideo, 0, 0);
+      const dataURL = canvas.toDataURL('image/png');
+
+      const link = document.createElement('a');
+      link.href = dataURL;
+      link.download = 'captured-image.png';
+      link.click();
+    });
+    // --- End Image Saving ---
+  </script>
+</body>
+</html>
