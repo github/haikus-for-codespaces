@@ -1,0 +1,54 @@
+
+import java.util.Scanner;
+import weka.core.Instances;
+import weka.classifiers.trees.J48;
+import weka.core.converters.ConverterUtils.DataSource;
+
+public class SolarFlareDetector {
+
+    public static void main(String[] args) throws Exception {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Solar Flare Detector");
+        System.out.println("Enter the X-ray Flux data: ");
+        double xRayFlux = input.nextDouble();
+
+        System.out.println("Enter the Proton Flux data: ");
+        double protonFlux = input.nextDouble();
+
+        // Load the training dataset
+        DataSource source = new DataSource("solar_flare_data.arff");
+        Instances data = source.getDataSet();
+
+        // Train the J48 classifier
+        J48 classifier = new J48();
+        classifier.buildClassifier(data);
+
+        // Make a prediction based on the input data
+        double[] inputData = {xRayFlux, protonFlux};
+        double result = classifier.classifyInstance(data.instance(0));
+
+        if (result == 1.0) {
+            System.out.println("Solar Flare detected!");
+            displayAlert();
+            sendNotification();
+            visualizeData(xRayFlux, protonFlux);
+        } else {
+            System.out.println("No Solar Flare detected.");
+        }
+    }
+
+    public static void displayAlert() {
+        System.out.println("\nDisplaying alert on the screen...");
+        System.out.println("Solar Flare detected! Please take necessary precautions.");
+    }
+
+    public static void sendNotification() {
+        System.out.println("\nSending notification to the registered users...");
+        System.out.println("Solar Flare detected! Please take necessary precautions.");
+    }
+
+    public static void visualizeData(double xRayFlux, double protonFlux) {
+        System.out.println("\nVisualizing data...");
+        System.out.println("X-ray Flux: " + xRayFlux + " and Proton Flux: " + protonFlux);
+    }
+}
