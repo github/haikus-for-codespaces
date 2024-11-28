@@ -1,0 +1,19 @@
+{
+    // "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+      "outDir": "dist",
+      "strict": true,
+      "declaration": true,
+      "declarationMap": true,
+      "sourceMap": true,
+      "composite": true,
+      "target": "ESNext",
+      "module": "esnext",
+      "jsx": "react",
+      "moduleResolution": "node",
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true
+    }
+  }

@@ -1,0 +1,27 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start:connect": "ts-node src/index.ts connect",
+    "start:sign": "ts-node src/index.ts sign",
+    "build": "tsc",
+    "clean": "rm -rf dist .sdk-comm",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "allow-scripts": "echo 'n/a'"
+  },
+  "dependencies": {
+    "@metamask/sdk": "^0.12.0",
+    "qrcode-terminal": "^0.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.1",
+    "ts-node": "^10.9.1",
+    "tsc": "^2.0.4",
+    "typescript": "^5.1.6"
+  }
+}
