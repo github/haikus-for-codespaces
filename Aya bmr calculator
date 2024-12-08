@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur BMR</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input { width: 100%; padding: 8px; }
+        button { padding: 10px 20px; background: #007BFF; color: #fff; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Calculateur BMR</h1>
+    <form id="bmr-form">
+        <div class="form-group">
+            <label for="age">Âge (années)</label>
+            <input type="number" id="age" required>
+        </div>
+        <div class="form-group">
+            <label for="sex">Sexe</label>
+            <select id="sex" required>
+                <option value="male">Homme</option>
+                <option value="female">Femme</option>
+            </select>
+        </div>
+        <div class="form-group"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur BMR</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input { width: 100%; padding: 8px; }
+        button { padding: 10px 20px; background: #007BFF; color: #fff; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Calculateur BMR</h1>
+    <form id="bmr-form">
+        <div class="form-group">
+            <label for="age">Âge (années)</label>
+            <input type="number" id="age" required>
+        </div>
+        <div class="form-group">
+            <label for="sex">Sexe</label>
+            <select id="sex" required>
+                <option value="male">Homme</option>
+                <option value="female">Femme</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="weight">Poids (kg)</label>
+            <input type="number" id="weight" required>
+        </div>
+        <div class="form-group">
+            <label for="height">Taille (cm)</label>
+            <input type="number" id="height" required>
+        </div>
+        <button type="button" onclick="calculateBMR()">Calculer</button>
+    </form>
+    <h2>Résultat : <span id="bmr-result">-</span> kcal/jour</h2>
+    <script>
+        function calculateBMR() {
+            const age = parseInt(document.getElementById("age").value);
+            const sex = document.getElementById("sex").value;
+            const weight = parseFloat(document.getElementById("weight").value);
+            const height = parseFloat(document.getElementById("height").value);
+
+            let bmr;
+            if (sex === "male") {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            } else {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            }
+
+            document.getElementById("bmr-result").innerText = bmr.toFixed(2);
+        }
+    </script>
+</body>
+</html>
