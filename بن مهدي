@@ -1,0 +1,68 @@
+import streamlit as st
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# العلامة التجارية
+st.title("نظام إدارة عبدالرزاق مهدي")
+
+# قائمة التنقل
+st.sidebar.title("القوائم")
+option = st.sidebar.radio("اختر القسم", ("إدارة المبيعات", "إدارة المشتريات", "إدارة النظام", "إدارة المخزون"))
+
+# الرسوم البيانية التوضيحية
+if option == "إدارة المبيعات":
+    st.header("إدارة المبيعات")
+    # بيانات وهمية للمبيعات
+    sales_data = pd.DataFrame({
+        'شهر': ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'],
+        'المبيعات': [1200, 1500, 1800, 1600, 1700, 1800]
+    })
+    st.write(sales_data)
+
+    # رسم بياني للمبيعات
+    fig, ax = plt.subplots()
+    ax.plot(sales_data['شهر'], sales_data['المبيعات'], marker='o')
+    ax.set_title('مبيعات شهور السنة')
+    ax.set_xlabel('الشهر')
+    ax.set_ylabel('المبيعات')
+    st.pyplot(fig)
+
+elif option == "إدارة المشتريات":
+    st.header("إدارة المشتريات")
+    # بيانات وهمية للمشتريات
+    purchases_data = pd.DataFrame({
+        'شهر': ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'],
+        'المشتريات': [1100, 1300, 1600, 1500, 1400, 1600]
+    })
+    st.write(purchases_data)
+
+    # رسم بياني للمشتريات
+    fig, ax = plt.subplots()
+    ax.plot(purchases_data['شهر'], purchases_data['المشتريات'], marker='o', color='green')
+    ax.set_title('مشتريات شهور السنة')
+    ax.set_xlabel('الشهر')
+    ax.set_ylabel('المشتريات')
+    st.pyplot(fig)
+
+elif option == "إدارة النظام":
+    st.header("إدارة النظام")
+    st.write("هنا يمكنك إدارة إعدادات النظام مثل الأذونات وبيانات المستخدمين.")
+    # إضافات إدارة النظام يمكن إضافتها هنا مثل إعدادات الوصول، إلخ
+
+elif option == "إدارة المخزون":
+    st.header("إدارة المخزون")
+    # بيانات وهمية للمخزون
+    inventory_data = pd.DataFrame({
+        'المنتج': ['منتج A', 'منتج B', 'منتج C', 'منتج D'],
+        'الكمية في المخزون': [500, 300, 200, 450]
+    })
+    st.write(inventory_data)
+
+    # رسم بياني للمخزون
+    fig, ax = plt.subplots()
+    ax.bar(inventory_data['منتج'], inventory_data['الكمية في المخزون'], color='orange')
+    ax.set_title('كمية المخزون لكل منتج')
+    ax.set_xlabel('المنتج')
+    ax.set_ylabel('الكمية')
+    st.pyplot(fig)
