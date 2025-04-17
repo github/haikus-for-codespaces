@@ -1,0 +1,84 @@
+from flask import Flask, render_template, request, redirect, url_for, session
+import stripe, os, json
+from dotenv import load_dotenv
+
+load_dotenv()
+app = Flask(__name__)
+app.secret_key = 'supersecurekey'
+
+stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
+PRODUCTS_FILE = "products.json"
+
+def load_products():
+    with open(PRODUCTS_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def save_products(products):
+    with open(PRODUCTS_FILE, "w", encoding="utf-8") as f:
+        json.dump(products, f, ensure_ascii=False, indent=2)
+
+@app.route("/")
+def index():
+    products = load_products()
+    return render_template("index.html", products=products)
+
+@app.route("/buy/<product_id>")
+def buy(product_id):
+    products = load_products()
+    product = next((p for p in products if p["id"] == product_id), None)
+    if not product:
+        return "Product not found", 404
+    session = stripe.checkout.Session.create(
+        payment_method_types=["card"],
+        line_items=[{
+            "price_data": {
+                "currency": "usd",
+                "product_data": {"name": product["name"]},
+                "unit_amount": int(float(product["price"]) * 100),
+            },
+            "quantity": 1,
+        }],
+        mode="payment",
+        success_url=url_for("success", _external=True),
+        cancel_url=url_for("index", _external=True),
+    )
+    return redirect(session.url, code=303)
+
+@app.route("/admin", methods=["GET", "POST"])
+def admin():
+    if session.get("logged_in") != True:
+        return redirect(url_for("login"))
+    products = load_products()
+    if request.method == "POST":
+        new_product = {
+            "id": f"prod_{len(products)+1}",
+            "name": request.form["name"],
+            "price": request.form["price"],
+            "image": request.form["image"],
+            "link": request.form["link"],
+            "desc": request.form["desc"]
+        }
+        products.append(new_product)
+        save_products(products)
+        return redirect(url_for("admin"))
+    return render_template("admin.html", products=products)
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        if request.form["username"] == "admin" and request.form["password"] == "1234":
+            session["logged_in"] = True
+            return redirect(url_for("admin"))
+    return render_template("login.html")
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("index"))
+
+@app.route("/success")
+def success():
+    return "<h1>تم الدفع بنجاح! شكراً لتسوقك من متجر بحر.</h1>"
+
+if __name__ == "__main__":
+    app.run(debug=True)
