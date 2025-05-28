@@ -1,4 +1,6 @@
 {
   "image": "ubuntu:22.04",
-  "features": {}
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  }
 }
