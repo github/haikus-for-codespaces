@@ -1,0 +1,145 @@
+import pandas as pd
+
+# 读取 Excel 文件
+excel_file = pd.ExcelFile('c:/Users/86135/date.xlsx')
+
+# 获取所有表名
+sheet_names = excel_file.sheet_names
+
+# 遍历每个工作表
+for sheet_name in sheet_names:
+    # 读取当前工作表的数据
+    df = excel_file.parse(sheet_name)
+    # 查看数据的基本信息
+    print(f'sheet表名为{sheet_name}的基本信息:')
+    df.info()
+    # 查看数据集行数和列数
+    rows, columns = df.shape
+    if rows < 100 and columns < 20:
+        # 短表数据（行数少于100且列数少于20）查看全量数据信息
+        print(f'sheet表名为{sheet_name}的全部内容信息:')
+        print(df.to_csv(sep='\t', na_rep='nan', index=False))
+    else:
+        # 长表数据查看数据前几行信息
+        print(f'sheet表名为{sheet_name}的前几行内容信息:')
+        print(df.head().to_csv(sep='\t', na_rep='nan', index=False))
+import pandas as pd
+import os
+
+# 读取 Excel 文件
+excel_file = pd.ExcelFile('c:/Users/86135/date.xlsx')
+
+# 获取所有表名
+sheet_names = excel_file.sheet_names
+
+# 缺失值阈值
+col_missing_threshold = 0.5  # 超过50%缺失值的列删除
+row_missing_threshold = 3    # 超过3个缺失值的行删除
+
+for sheet_name in sheet_names:
+    # 读取当前工作表的数据
+    df = excel_file.parse(sheet_name)
+    # 去除完全重复的行
+    df = df.drop_duplicates()
+    # 计算每列的缺失值比例
+    col_missing_ratio = df.isnull().sum() / len(df)
+    # 删除缺失值比例超过阈值的列
+    df = df.drop(col_missing_ratio[col_missing_ratio > col_missing_threshold].index, axis=1)
+    # 计算每行的缺失值数量
+    row_missing_count = df.isnull().sum(axis=1)
+    # 删除缺失值数量超过阈值的行
+    df = df.drop(row_missing_count[row_missing_count > row_missing_threshold].index)
+    # 构建新文件路径
+    new_file_path = f'c:/Users/86135/date_{sheet_name}_cleaned.xlsx'
+    # 保存为新的 Excel 文件
+    with pd.ExcelWriter(new_file_path) as writer:
+        df.to_excel(writer, sheet_name=sheet_name, index=False)
+    print(f"{sheet_name} 已清洗并保存为 {new_file_path}")
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# 读取 Excel 文件
+file_path = 'Dataset/Target customer experience data.xlsx'
+excel_file = pd.ExcelFile(file_path)
+
+# 获取所有工作表名
+sheet_names = excel_file.sheet_names
+
+# 缺失值阈值
+col_missing_threshold = 0.5  # 超过50%缺失值的列删除
+row_missing_threshold = 3    # 超过3个缺失值的行删除
+
+for sheet_name in sheet_names:
+    # 读取当前工作表的数据
+    df = excel_file.parse(sheet_name)
+    # 去除完全重复的行
+    df = df.drop_duplicates()
+    # 计算每列的缺失值比例
+    col_missing_ratio = df.isnull().sum() / len(df)
+    # 删除缺失值比例超过阈值的列
+    df = df.drop(col_missing_ratio[col_missing_ratio > col_missing_threshold].index, axis=1)
+    # 计算每行的缺失值数量
+    row_missing_count = df.isnull().sum(axis=1)
+    # 删除缺失值数量超过阈值的行
+    df = df.drop(row_missing_count[row_missing_count > row_missing_threshold].index)
+    # 可以在此处进行数据可视化（如缺失值热力图），如果需要：
+    # sns.heatmap(df.isnull(), cbar=False)
+    # plt.title(f'Missing values heatmap for {sheet_name}')
+    # plt.show()
+    # 保存清洗后的数据为新的 Excel 文件
+    new_file_path = f'Dataset/{sheet_name}_cleaned.xlsx'
+    with pd.ExcelWriter(new_file_path) as writer:
+        df.to_excel(writer, sheet_name=sheet_name, index=False)
+    print(f"{sheet_name} 已清洗并保存为 {new_file_path}")
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# 设置图片分辨率
+plt.rcParams["figure.dpi"] = 300
+# 设置中文字体（需要本地有对应字体）
+plt.rcParams["font.sans-serif"] = ['WenQuanYi Zen Hei']
+# 正常显示负号
+plt.rcParams["axes.unicode_minus"] = False
+
+# 假设df已经经过清洗，可以直接使用
+
+sheet_name = "Sheet1"  # 你可以在循环中传入当前sheet名
+
+# 1. 数值型列的箱线图
+numeric_cols = df.select_dtypes(include='number').columns
+if not numeric_cols.empty:
+    df[numeric_cols].plot.box()
+    plt.title(f"{sheet_name} 数值型列箱线图")
+    plt.ylabel("数值")
+    plt.show()
+
+    # 各数值型列的分布图
+    for col in numeric_cols:
+        sns.histplot(df[col], kde=True)
+        plt.title(f"{sheet_name} 列 {col} 的分布图")
+        plt.xlabel(col)
+        plt.ylabel("频次")
+        plt.show()
+
+# 2. 各对象型（类别型）列的条形图
+object_cols = df.select_dtypes(include='object').columns
+for col in object_cols:
+    value_counts = df[col].value_counts()
+    value_counts.plot(kind='bar')
+    plt.title(f"{sheet_name} 列 {col} 的柱状图")
+    plt.xlabel(col)
+    plt.ylabel("数量")
+    plt.xticks(rotation=45)
+    plt.show()
+
+# 3. 如有日期列，绘制随时间变化的趋势图（假设日期列名为'date'，请根据实际修改列名）
+if "date" in df.columns:
+    df['date'] = pd.to_datetime(df['date'])
+    time_series_data = df.groupby('date').size()
+    time_series_data.plot(kind='line')
+    plt.title(f"{sheet_name} 随时间的变化趋势")
+    plt.xlabel("日期")
+    plt.ylabel("数量")
+    plt.show()
