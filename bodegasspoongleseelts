@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bodegas Spoongle Seelts - Página Futurista</title>
+  <style>
+    /* Variables para tema claro y oscuro */
+    :root {
+      /* Tema claro */
+      --bg-color: #f2f2f2;
+      --text-color: #333;
+      --header-bg: rgba(26, 26, 26, 0.8);
+      --nav-bg: rgba(51, 51, 51, 0.9);
+      --nav-hover: #555;
+      --container-bg: rgba(255, 255, 255, 0.95);
+      --section-bg: #fafafa;
+      --section-border: #1a1a1a;
+      --link-color: #007BFF;
+      --footer-bg: #1a1a1a;
+      --footer-text: #fff;
+    }
+
+    .dark-mode {
+      /* Tema oscuro */
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --header-bg: rgba(0, 0, 0, 0.8);
+      --nav-bg: rgba(30, 30, 30, 0.9);
+      --nav-hover: #444;
+      --container-bg: rgba(20, 20, 20, 0.95);
+      --section-bg: #1e1e1e;
+      --section-border: #444;
+      --link-color: #4DB6AC;
+      --footer-bg: #000;
+      --footer-text: #ddd;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      position: relative;
+    }
+    /* Canvas para el fondo animado */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle, #1a1a1a, #000);
+    }
+    
+    header {
+      background-color: var(--header-bg);
+      color: var(--footer-text);
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      backdrop-filter: blur(5px);
+    }
+    header img {
+      max-width: 150px;
+      display: block;
+      margin: 0 auto 10px;
+      transition: transform 0.3s ease;
+    }
+    header img:hover {
+      transform: scale(1.05);
+    }
+    /* Botón para alternar el modo oscuro/claro */
+    .mode-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: var(--nav-bg);
+      color: var(--footer-text);
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .mode-toggle:hover {
+      transform: scale(1.1);
+      background-color: var(--nav-hover);
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: var(--nav-bg);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav a {
+      padding: 15px 25px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    nav a:hover {
+      transform: translateY(-3px) scale(1.05);
+      background-color: var(--nav-hover);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: var(--container-bg);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      border-radius: 8px;
+    }
+    section {
+      margin-bottom: 40px;
+      padding: 20px;
+      border-left: 4px solid var(--section-border);
+      background-color: var(--section-bg);
+      border-radius: 4px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    section:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+    h2 {
+      color: var(--text-color);
+      border-bottom: 2px solid #e5e5e5;
+      padding-bottom: 10px;
+    }
+    a {
+      color: var(--link-color);
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: var(--nav-hover);
+    }
+    footer {
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+      text-align: center;
+      padding: 15px;
+    }
+
+    /* Animación de aparición para secciones */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Canvas para fondo animado -->
+  <canvas id="bg-canvas"></canvas>
+  
+  <header>
+    <!-- Reemplaza "ruta-del-logo.png" por la ruta de tu logo -->
+    <img src="ruta-del-logo.png" alt="Logo Bodegas Spoongle Seelts">
+    <h1>Bodegas Spoongle Seelts</h1>
+    <p>Innovación y tecnología para la industria y construcción</p>
+    <button class="mode-toggle" id="dark-mode-toggle">Modo Oscuro</button>
+  </header>
+
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#sobre-nosotros">Sobre Nosotros</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#portafolio">Portafolio</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <div class="container">
+    <section id="inicio" class="fade-in">
+      <h2>Bienvenido</h2>
+      <p>Descubre cómo nuestra innovación y herramientas futuristas están transformando la industria y la construcción.</p>
+    </section>
+
+    <section id="sobre-nosotros" class="fade-in">
+      <h2>Sobre Nosotros</h2>
+      <p>En Bodegas Spoongle Seelts combinamos tecnología, diseño y un enfoque futurista para ofrecer soluciones únicas para el sector industrial.</p>
+    </section>
+
+    <section id="servicios" class="fade-in">
+      <h2>Servicios</h2>
+      <p>Ofrecemos perfiles especializados, herramientas innovadoras y asesoría personalizada para la transformación digital en la industria.</p>
+    </section>
+
+    <section id="portafolio" class="fade-in">
+      <h2>Portafolio</h2>
+      <p>Conoce nuestros proyectos y las soluciones tecnológicas que hemos implementado para clientes del sector industrial y de construcción.</p>
+    </section>
+
+    <section id="contacto" class="fade-in">
+      <h2>Contacto</h2>
+      <p>Si tienes alguna consulta o deseas trabajar con nosotros, contáctanos vía email:
+         <a href="mailto:info@spoongleseelts.com">info@spoongleseelts.com</a>.
+      </p>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Bodegas Spoongle Seelts. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Animación de aparición con IntersectionObserver
+    document.addEventListener("DOMContentLoaded", function(){
+      const fadeInElements = document.querySelectorAll('.fade-in');
+      const options = { threshold: 0.25 };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, options);
+
+      fadeInElements.forEach(element => observer.observe(element));
+    });
+
+    // Funcionalidad de Modo Oscuro/Claro
+    const toggleBtn = document.getElementById("dark-mode-toggle");
+    toggleBtn.addEventListener("click", function() {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) {
+        toggleBtn.textContent = "Modo Claro";  
+      } else {
+        toggleBtn.textContent = "Modo Oscuro";
+      }
+    });
+
+    // Animación de fondo con partículas
+    const canvas = document.getElementById("bg-canvas");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+    const particleCount = 120;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.radius = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 1.5;
+        this.speedY = (Math.random() - 0.5) * 1.5;
+        this.alpha = Math.random() * 0.5 + 0.5;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+    initParticles();
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+  </script>
+</body>
+</html>
+
