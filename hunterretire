@@ -1,0 +1,201 @@
+
+import { useState } from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell
+} from "recharts";
+
+const COLORS = ["#8884d8", "#82ca9d", "#ffc658"];
+
+function compoundGrowth(pv, contrib, rate, years, contribGrowth = 0) {
+  let values = [];
+  let value = pv;
+  for (let i = 0; i <= years; i++) {
+    values.push({
+      year: i,
+      nominal: Math.round(value),
+    });
+    value = (value + contrib) * (1 + rate);
+    contrib *= (1 + contribGrowth);
+  }
+  return values;
+}
+
+function simulateDrawdown(startAmount, withdraw, returnRate, inflationRate, startAge) {
+  const result = [];
+  let value = startAmount;
+  let totalWithdrawn = 0;
+  let age = startAge;
+  let year = 0;
+  while (value > 0 && year < 100) {
+    const realWithdraw = withdraw * Math.pow(1 + inflationRate, year);
+    totalWithdrawn += realWithdraw;
+    value = (value - realWithdraw) * (1 + returnRate);
+    result.push({
+      age,
+      balance: Math.max(value, 0),
+      withdrawn: Math.round(totalWithdrawn)
+    });
+    age++;
+    year++;
+  }
+  return result;
+}
+
+function adjustForInflation(values, inflationRate) {
+  return values.map(v => ({
+    ...v,
+    real: Math.round(v.nominal / Math.pow(1 + inflationRate, v.year))
+  }));
+}
+
+function adjustedAverages(inflationRate, yearsOffset = 0) {
+  const baseAverages = {
+    30: 40000,
+    40: 120000,
+    50: 210000,
+    60: 330000,
+    70: 400000
+  };
+  return Object.entries(baseAverages).map(([age, value]) => {
+    const years = parseInt(age) - 30 + yearsOffset;
+    const adjusted = value * Math.pow(1 + inflationRate, years);
+    return { age: parseInt(age), average: Math.round(adjusted) };
+  });
+}
+
+export default function RetirementApp() {
+  const [age, setAge] = useState(35);
+  const [retirementAge, setRetirementAge] = useState(65);
+  const [savings, setSavings] = useState(50000);
+  const [contrib, setContrib] = useState(10000);
+  const [returnRate, setReturnRate] = useState(0.05);
+  const [inflation, setInflation] = useState(0.02);
+  const [growth, setGrowth] = useState(0.02);
+  const [withdrawal, setWithdrawal] = useState(40000);
+  const [scenario, setScenario] = useState("base");
+
+  const scenarioRates = {
+    base: { returnRate: returnRate, contribGrowth: growth },
+    optimistic: { returnRate: returnRate + 0.02, contribGrowth: growth + 0.01 },
+    pessimistic: { returnRate: returnRate - 0.02, contribGrowth: growth - 0.01 },
+  }[scenario];
+
+  const years = retirementAge - age;
+  const nominalData = compoundGrowth(savings, contrib, scenarioRates.returnRate, years, scenarioRates.contribGrowth);
+  const allData = adjustForInflation(nominalData, inflation).map((d, i) => ({
+    age: age + i,
+    ...d
+  }));
+  const averages = adjustedAverages(inflation, age - 30);
+
+  const finalReal = allData[allData.length - 1]?.real || 0;
+  const finalNominal = allData[allData.length - 1]?.nominal || 0;
+  const contribTotal = contrib * years;
+  const investmentGain = finalNominal - savings - contribTotal;
+
+  const pieData = [
+    { name: "Initial Savings", value: savings },
+    { name: "Contributions", value: contribTotal },
+    { name: "Growth", value: investmentGain }
+  ];
+
+  const drawdownData = simulateDrawdown(finalNominal, withdrawal, scenarioRates.returnRate, inflation, retirementAge);
+
+  return (
+    <div className="p-4 max-w-5xl mx-auto">
+      <h1 className="text-3xl font-bold mb-4 text-center">Retirement Projection App</h1>
+
+      <div className="grid grid-cols-2 gap-4 mb-6">
+        <label>Age: <input type="number" value={age} onChange={e => setAge(+e.target.value)} className="input" /></label>
+        <label>Retirement Age: <input type="number" value={retirementAge} onChange={e => setRetirementAge(+e.target.value)} className="input" /></label>
+        <label>Current Savings: $<input type="number" value={savings} onChange={e => setSavings(+e.target.value)} className="input" /></label>
+        <label>Annual Contribution: $<input type="number" value={contrib} onChange={e => setContrib(+e.target.value)} className="input" /></label>
+        <label>Annual Return Rate: <input type="number" step="0.01" value={returnRate} onChange={e => setReturnRate(+e.target.value)} className="input" /></label>
+        <label>Inflation Rate: <input type="number" step="0.01" value={inflation} onChange={e => setInflation(+e.target.value)} className="input" /></label>
+        <label>Contribution Growth Rate: <input type="number" step="0.01" value={growth} onChange={e => setGrowth(+e.target.value)} className="input" /></label>
+        <label>Annual Withdrawal in Retirement: $<input type="number" value={withdrawal} onChange={e => setWithdrawal(+e.target.value)} className="input" /></label>
+        <label>Scenario:
+          <select value={scenario} onChange={e => setScenario(e.target.value)} className="input">
+            <option value="base">Base</option>
+            <option value="optimistic">Optimistic</option>
+            <option value="pessimistic">Pessimistic</option>
+          </select>
+        </label>
+      </div>
+
+      {/* Scenario explanation block */}
+      <div className="mb-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 rounded">
+        <p className="font-medium">Scenario Definitions:</p>
+        <ul className="list-disc ml-5 mt-1 text-sm">
+          <li><strong>Base:</strong> Uses your exact inputs as entered above.</li>
+          <li><strong>Optimistic:</strong> Assumes +2% higher return rate and +1% higher annual contribution growth than your inputs.</li>
+          <li><strong>Pessimistic:</strong> Assumes −2% lower return rate and −1% lower annual contribution growth than your inputs.</li>
+        </ul>
+      </div>
+
+      <ResponsiveContainer width="100%" height={400}>
+        <LineChart data={allData} margin={{ top: 5, right: 30, bottom: 5, left: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="age" />
+          <YAxis />
+          <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+          <Legend />
+          <Line type="monotone" dataKey="nominal" stroke="#8884d8" name="Your Savings (Nominal)" />
+          <Line type="monotone" dataKey="real" stroke="#82ca9d" name="Your Savings (Real)" />
+        </LineChart>
+      </ResponsiveContainer>
+
+      <h2 className="text-xl font-semibold mt-10 mb-2">Post-Retirement Drawdown Projection</h2>
+      <ResponsiveContainer width="100%" height={300}>
+        <LineChart data={drawdownData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="age" />
+          <YAxis />
+          <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+          <Legend />
+          <Line type="monotone" dataKey="balance" stroke="#ff7300" name="Savings Balance After Retirement" />
+          <Line type="monotone" dataKey="withdrawn" stroke="#00bcd4" name="Total Withdrawn" />
+        </LineChart>
+      </ResponsiveContainer>
+
+      <h2 className="text-xl font-semibold mt-10 mb-2">Breakdown of Final Savings (Nominal)</h2>
+      <ResponsiveContainer width="100%" height={300}>
+        <PieChart>
+          <Pie
+            data={pieData}
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            outerRadius={100}
+            label
+          >
+            {pieData.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+          <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+          <Legend />
+        </PieChart>
+      </ResponsiveContainer>
+
+      <h2 className="text-xl font-semibold mt-10">US Averages (Inflation Adjusted)</h2>
+      <ul className="list-disc ml-6 mt-2">
+        {averages.map(a => (
+          <li key={a.age}>Age {a.age}: ${a.average.toLocaleString()}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
