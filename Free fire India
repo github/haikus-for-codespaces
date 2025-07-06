@@ -1,0 +1,152 @@
+public class CulturalItems : MonoBehaviour
+{
+    // Chai Kit - Health Regeneration
+    public void UseChaiKit(PlayerHealth health)
+    {
+        StartCoroutine(RegenerateHealth(health));
+    }
+    
+    IEnumerator RegenerateHealth(PlayerHealth health)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            health.Heal(10);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+    
+    // Holi Color Grenade
+    public class HoliGrenade : Throwable
+    {
+        public Color[] revealColors;
+        
+        protected override void Explode()
+        {
+            Collider[] targets = Physics.OverlapSphere(transform.position, blastRadius);
+            foreach (Collider target in targets)
+            {
+                if (target.CompareTag("Enemy"))
+                {
+                    // Apply colored outline
+                    target.GetComponent<EnemyOutline>().ApplyHoliEffect(
+                        revealColors[Random.Range(0, revealColors.Length)]
+                    );
+                }
+            }
+            Instantiate(explosionVFX, transform.position, Quaternion.identity);
+        }
+    }
+}public class CulturalItems : MonoBehaviour
+{
+    // Chai Kit - Health Regeneration
+    public void UseChaiKit(PlayerHealth health)
+    {
+        StartCoroutine(RegenerateHealth(health));
+    }
+    
+    IEnumerator RegenerateHealth(PlayerHealth health)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            health.Heal(10);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+    
+    // Holi Color Grenade
+    public class HoliGrenade : Throwable
+    {
+        public Color[] revealColors;
+        
+        protected override void Explode()
+        {
+            Collider[] targets = Physics.OverlapSphere(transform.position, blastRadius);
+            foreach (Collider target in targets)
+            {
+                if (target.CompareTag("Enemy"))
+                {
+                    // Apply colored outline
+                    target.GetComponent<EnemyOutline>().ApplyHoliEffect(
+                        revealColors[Random.Range(0, revealColors.Length)]
+                    );
+                }
+            }
+            Instantiate(explosionVFX, transform.position, Quaternion.identity);
+        }
+    
+￼public class DynamicMapEvents : MonoBehaviour
+{
+    // Himalayan Avalanche
+    public void TriggerAvalanche(Transform zone)
+    {
+        StartCoroutine(AvalancheSequence(zone));
+    }
+    
+    IEnumerator AvalancheSequence(Transform zone)
+    {
+        // Visual effects
+        ParticleSystem snowStorm = zone.GetComponentInChildren<ParticleSystem>();
+        snowStorm.Play();
+        
+        // Physics effects
+        yield return new WaitForSeconds(2f);
+        Collider[] players = Physics.OverlapBox(zone.position, new Vector3(200,50,400));
+        foreach (Collider player in players)
+        {
+            player.GetComponent<PlayerImpact>().ApplyEnvironmentalDamage(
+                DamageType.Avalanche, 
+                25, 
+                Vector3.down * 10f
+            );
+        }
+    }
+    
+    // Mumbai Train System
+    public class MovingTrain : MonoBehaviour
+    {
+        public Transform[] pathPoints;
+        public float speed = 30f;
+        
+        void Update()
+        {
+            // Train movement logic
+            transform.position = Vector3.MoveTowards(
+                transform.position, 
+                GetNextPoint(), 
+                speed * Time.deltaTime
+            );
+            
+            // Damage players on collision
+            if (Physics.CheckSphere(transform.position, 8f, LayerMask.GetMask("Players")))
+            {
+                Collider[] hitPlayers = Physics.OverlapSphere(transform.position, 8f);
+                foreach (Collider player in hitPlayers)
+                {
+                    player.GetComponent<PlayerHealth>().TakeDamage(50);
+                }
+            }
+        }
+    }
+}// Asset bundling for regional skins
+IEnumerator LoadRegionalSkin(string stateName)
+{
+    AssetBundleCreateRequest bundleRequest = 
+        AssetBundle.LoadFromFileAsync(Path.Combine(Application.streamingAssetsPath, stateName));
+    yield return bundleRequest;
+    ApplySkin(bundleRequest.assetBundle.LoadAsset<Material>(stateName + "_Skin"));
+}// Yoddha Shield validation
+void ValidatePlayerMovement()
+{
+    if (player.position.y > 150 || 
+        player.velocity.magnitude > maxSpeed * 1.5f)
+    {
+        StartCoroutine(CheckForHacking(player));
+    }
+}# Sample matchmaking logic (Python backend)
+def matchmake_players(region):
+    optimal_servers = {
+        "North": "delhi-server1",
+        "South": "chennai-server3",
+        "West": "mumbai-server2"
+    }
+    return optimal_servers.get(region, "mumbai-default")
