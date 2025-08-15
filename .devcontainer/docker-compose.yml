@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  # 主要开发容器 - 基于 Ubuntu
+  app:
+    image: mcr.microsoft.com/devcontainers/base:ubuntu-22.04
+    volumes:
+      - ..:/workspace:cached
+      - devcontainer-home:/home/vscode
+    
+    # 保持容器运行
+    command: sleep infinity
+    
+    # 网络设置
+    networks:
+      - dev-network
+    
+    # 环境变量
+    environment:
+      - CONTAINER_NAME=app
+      - NODE_ENV=development
+    
+    # 端口映射
+    ports:
+      - "3000:3000"
+      - "8080:8080"
+    
+    # 依赖关系
+    depends_on:
+      - database
+    
+    # 特权和能力
+    privileged: true
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+
+  # 数据库容器 - PostgreSQL
+  database:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    
+    # 数据持久化
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    
+    # 网络设置
+    networks:
+      - dev-network
+    
+    # 环境变量
+    environment:
+      POSTGRES_DB: devdb
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpass
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    
+    # 端口映射
+    ports:
+      - "5432:5432"
+    
+    # 健康检查
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U devuser -d devdb"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+# 网络定义
+networks:
+  dev-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+# 卷定义
+volumes:
+  devcontainer-home:
+    name: devcontainer-home
+  postgres-data:
+    name: postgres-data
