@@ -1,0 +1,356 @@
+import React, { useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Download, Wand2, Clipboard, Trash2, Sparkles } from "lucide-react";
+
+// ----------------------------------------------------
+// Креативті Сабақ — бір файлдық PoC (қазақ тілінде)
+// Бұл компонент оффлайн логикамен үлгі жоспар генерациялайды (LLM жоқ).
+// ----------------------------------------------------
+
+const creativeModes = [
+  { value: "квест", label: "Квест" },
+  { value: "сторителлинг", label: "Сторителлинг" },
+  { value: "дебат", label: "Дебат" },
+  { value: "жоба", label: "Жоба" },
+];
+
+function section(title: string, body: string) {
+  return `## ${title}\n${body}\n`;
+}
+
+function list(items: string[]) {
+  return items.map((i) => `- ${i}`).join("\n");
+}
+
+function mkDifferentiation(topic: string) {
+  return section(
+    "Дифференциация (3 деңгей)",
+    [
+      "**Базалық:** " +
+        `Қысқа тапсырма: ${topic} бойынша 1 қарапайым мысал орындау. Күтілетін жауап: негізгі ұғымды дұрыс қолдану.`,
+      "**Орта:** " +
+        `Қолданбалы тапсырма: ${topic} тақырыбында шағын практикалық жоба (2–3 қадам). Күтілетін жауап: алгоритмді дұрыс қолдану, түсіндірме беру.`,
+      "**Күрделі:** " +
+        `Шынайы кейс: ${topic} тақырыбын өмірлік жағдаятқа бейімдеу (шектеулер/шарттармен). Бағалау: дәлдік, тиімділік, креатив.`,
+    ].join("\n")
+  );
+}
+
+function mkRubric() {
+  return section(
+    "Рубрика (қысқа)",
+    [
+      "| Критерий | Бастапқы | Жақсы | Өте жақсы |",
+      "|---|---|---|---|",
+      "| Мазмұн дәлдігі | Ұғымдар шатасқан | Дұрыс, аз қате | Дәл, дәлелмен |",
+      "| Креатив | Ойындандыру аз | Идея бар | Ерекше, оқиға/миссия |",
+      "| Цифрлық сауат | Құралды шектеулі қолданады | Негізгі қолданады | Тиімді, қауіпсіз қолданады |",
+      "| Коммуникация | Тіл түсініксіз | Түсінікті | Жүйелі, терминдер орынды |",
+    ].join("\n")
+  );
+}
+
+function mkResources(topic: string) {
+  return section(
+    "Ресурс идеялары",
+    list([
+      `${topic} тақырыбын түсіндіретін қысқа экранжазба (2–3 мин).`,
+      "Қарапайым интерактив тапсырма (код фрагментін толықтыр).",
+      "Шағын викторина (5 сұрақ) — ұғымдарды бекіту.",
+    ])
+  );
+}
+
+function mkSafety() {
+  return section(
+    "Қауіпсіздік/этика чек-лист",
+    list([
+      "Жеке дерек (аты-жөні, байланыс) енгізілмеген.",
+      "Авторлық құқық: тек ашық/өз материалы қолданылды.",
+      "Академиялық адалдық: генерирленген мәтін үлгі ретінде, оқушы өздігінен орындайды.",
+    ])
+  );
+}
+
+function mkCreativeBlock(mode: string, topic: string) {
+  if (mode === "квест") {
+    return section(
+      "Квест дизайны",
+      list([
+        `Миссия: "${topic}" құпиясын аш!`,
+        "Кезең 1: Терминдерді табу → 3 ұғымға анықтама жаз.",
+        "Кезең 2: Қолдану сынағы → шағын тапсырма орында.",
+        "Кезең 3: Шынайы кейс → топпен шешім жаса.",
+        "Финал: «Жасырын код» — 3 дұрыс жауаптан құралады.",
+      ])
+    );
+  }
+  if (mode === "сторителлинг") {
+    return section(
+      "Сторителлинг",
+      list([
+        `Басты кейіпкер ${topic} қиындықтарына тап болды…`,
+        "Көрініс 1: Мәселені түсіну — терминдерді ашу.",
+        "Көрініс 2: Шешім жолы — алгоритм/ережені қолдану.",
+        "Көрініс 3: Нәтиже — рефлексия мен ұсыныс.",
+      ])
+    );
+  }
+  if (mode === "дебат") {
+    return section(
+      "Дебат",
+      list([
+        `Тақырыптық тезис: «${topic} — ең тиімді тәсіл ме?»`,
+        "Команда A: дәлелдер (3).",
+        "Команда B: қарсы уәждер (3).",
+        "Қорытындылау: дәлел сапасы, дереккөз сенімділігі.",
+      ])
+    );
+  }
+  // жоба
+  return section(
+    "Жобалық формат",
+    list([
+      `Жоба мақсаты: ${topic} тақырыбында пайдалы мини-өнім жасау.`,
+      "Рөлдер: талдаушы, құрастырушы, баяндаушы.",
+      "Нәтиже: жұмысшы прототип + қысқа питч (1 мин).",
+    ])
+  );
+}
+
+function buildPlan({
+  grade,
+  topic,
+  goal,
+  duration,
+  creativeMode,
+}: {
+  grade: string;
+  topic: string;
+  goal: string;
+  duration: string;
+  creativeMode: string;
+}) {
+  const header = `# Сабақ жоспары (Информатика, ${grade}-сынып)\nТақырып: ${topic}\nОқу мақсаты: ${goal}\nУақыты: ${duration} мин\nРежим: ${creativeMode}\n`;
+
+  const intro = section(
+    "Кіріспе (қызықтыру, 5 мин)",
+    list([
+      `Өмірден 2 мысал келтір (тақырып: ${topic}).`,
+      "Сынып шағын сауал: бүгін не үйренеміз?",
+      "Сабақ мақсаттары жарияланады.",
+    ])
+  );
+
+  const newKnowledge = section(
+    "Жаңа білім (15–20 мин)",
+    list([
+      `Негізгі ұғымдар мен ережелер (${topic}).`,
+      "Қысқа демонстрация немесе код/скрин.",
+      "Түсіну сұрақтары: 3 сұрақ.",
+    ])
+  );
+
+  const practice = section(
+    "Бекіту (15 мин)",
+    list([
+      "Жұптық тапсырма: нұсқаулықпен орындау.",
+      "Топтық мини-кейс: шешімін постер/код ретінде ұсыну.",
+    ])
+  );
+
+  const reflection = section(
+    "Рефлексия (5 мин)",
+    list([
+      "2 қиындық + 1 табысты сәт.",
+      "Келесі қадам: не жетілдіремін?",
+    ])
+  );
+
+  const homework = section(
+    "Үй тапсырмасы",
+    list([
+      `Қысқа тапсырма: ${topic} бойынша 1 мысал жазып келу.`,
+      "Қосымша: 3 сұрақтан мини-викторина құрастыру.",
+    ])
+  );
+
+  const creative = mkCreativeBlock(creativeMode, topic);
+  const diff = mkDifferentiation(topic);
+  const rubric = mkRubric();
+  const resources = mkResources(topic);
+  const safety = mkSafety();
+
+  return [
+    header,
+    intro,
+    newKnowledge,
+    practice,
+    reflection,
+    homework,
+    creative,
+    diff,
+    rubric,
+    resources,
+    safety,
+  ].join("\n\n");
+}
+
+export default function CreativeLessonPoC() {
+  const [grade, setGrade] = useState("7");
+  const [topic, setTopic] = useState("Шартты операторлар");
+  const [goal, setGoal] = useState("if/elif/else синтаксисін қолдану");
+  const [duration, setDuration] = useState("45");
+  const [creativeMode, setCreativeMode] = useState(creativeModes[0].value);
+  const [output, setOutput] = useState("\n\nГенерацияланған жоспар осы жерде көрсетіледі…");
+  const [tab, setTab] = useState("preview");
+
+  const canGenerate = useMemo(() => topic.trim().length > 2 && goal.trim().length > 2, [topic, goal]);
+
+  function handleGenerate() {
+    const text = buildPlan({ grade, topic, goal, duration, creativeMode });
+    setOutput(text);
+    setTab("preview");
+  }
+
+  function handleClear() {
+    setOutput("");
+  }
+
+  async function handleCopy() {
+    try {
+      await navigator.clipboard.writeText(output);
+    } catch {}
+  }
+
+  function handleDownload() {
+    const blob = new Blob([output], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `sabak-jospary-${Date.now()}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  return (
+    <div className="min-h-screen w-full bg-gradient-to-b from-white to-slate-50 px-4 py-8">
+      <div className="mx-auto max-w-6xl">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+          <div className="flex items-center gap-2 mb-6">
+            <Sparkles className="h-6 w-6" />
+            <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Креативті Сабақ — PoC</h1>
+            <Badge className="rounded-2xl">kk</Badge>
+          </div>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          {/* Сол панель — параметрлер */}
+          <Card className="lg:col-span-1 shadow-sm">
+            <CardHeader>
+              <CardTitle>Параметрлер</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label>Сынып</Label>
+                <Input value={grade} onChange={(e) => setGrade(e.target.value)} placeholder="7" />
+              </div>
+              <div className="space-y-2">
+                <Label>Тақырып</Label>
+                <Input value={topic} onChange={(e) => setTopic(e.target.value)} placeholder="Мыс.: Алгоритмдер" />
+              </div>
+              <div className="space-y-2">
+                <Label>Оқу мақсаты</Label>
+                <Input value={goal} onChange={(e) => setGoal(e.target.value)} placeholder="Мыс.: Негізгі ұғымдарды қолдану" />
+              </div>
+              <div className="space-y-2">
+                <Label>Сабақ уақыты (мин)</Label>
+                <Input value={duration} onChange={(e) => setDuration(e.target.value)} placeholder="45" />
+              </div>
+              <div className="space-y-2">
+                <Label>Креатив режимі</Label>
+                <Select value={creativeMode} onValueChange={setCreativeMode}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Таңдаңыз" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {creativeModes.map((m) => (
+                      <SelectItem key={m.value} value={m.value}>
+                        {m.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="flex gap-2 pt-2">
+                <Button disabled={!canGenerate} onClick={handleGenerate} className="gap-2">
+                  <Wand2 className="h-4 w-4" /> Генерациялау
+                </Button>
+                <Button variant="secondary" onClick={handleClear} className="gap-2">
+                  <Trash2 className="h-4 w-4" /> Тазарту
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Оң панель — нәтиже */}
+          <Card className="lg:col-span-2 shadow-sm">
+            <CardHeader className="flex flex-row items-center justify-between">
+              <CardTitle>Нәтиже</CardTitle>
+              <div className="flex gap-2">
+                <Button variant="outline" onClick={handleCopy} className="gap-2">
+                  <Clipboard className="h-4 w-4" /> Көшіру
+                </Button>
+                <Button onClick={handleDownload} className="gap-2">
+                  <Download className="h-4 w-4" /> TXT жүктеу
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <Tabs value={tab} onValueChange={setTab}>
+                <TabsList className="grid grid-cols-2 w-full">
+                  <TabsTrigger value="preview">Алдын ала қарау</TabsTrigger>
+                  <TabsTrigger value="raw">Мәтін (raw)</TabsTrigger>
+                </TabsList>
+                <TabsContent value="preview" className="mt-4">
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}>
+                    <article className="prose prose-slate max-w-none">
+                      {output
+                        .split("\n\n")
+                        .filter(Boolean)
+                        .map((block, idx) => (
+                          <section key={idx} className="mb-4">
+                            {block.includes("## ") || block.startsWith("# ") ? (
+                              <div dangerouslySetInnerHTML={{ __html: block.replace(/^## (.*)$/gm, '<h3>$1</h3>').replace(/^# (.*)$/gm, '<h2>$1</h2>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>') }} />
+                            ) : (
+                              <p>{block}</p>
+                            )}
+                          </section>
+                        ))}
+                    </article>
+                  </motion.div>
+                </TabsContent>
+                <TabsContent value="raw" className="mt-4">
+                  <Textarea value={output} onChange={(e) => setOutput(e.target.value)} rows={22} />
+                </TabsContent>
+              </Tabs>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="mt-6 text-xs text-slate-500">
+          PoC: оффлайн генерация. Толық нұсқада LLM + RAG қосуға болады.
+        </div>
+      </div>
+    </div>
+  );
+}
