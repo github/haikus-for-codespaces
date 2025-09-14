@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لعبة تربية الدجاج المستوى الأعلى</title>
+<style>
+  body { font-family: Arial, sans-serif; text-align:center; background: linear-gradient(#f0f8ff, #d0f0c0); }
+  h1 { margin-top: 20px; color: #ff6600; }
+  #money, #tasks { font-size: 20px; margin: 10px; }
+  #farm { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+  .chicken { display: flex; flex-direction: column; align-items:center; margin: 10px; font-size: 32px; cursor:pointer; transition: transform 0.2s; }
+  .chicken:hover { transform: scale(1.2); }
+  .egg { font-size: 32px; margin-top: 5px; cursor:pointer; animation: bounce 1s infinite; }
+  @keyframes bounce { 0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
+  button { padding:10px 20px; margin:10px; font-size:16px; cursor:pointer; border-radius:8px; background:#ff9900; color:white; border:none; transition: background 0.2s; }
+  button:hover { background:#ff6600; }
+</style>
+</head>
+<body>
+
+<h1>🐔 لعبة تربية الدجاج - المستوى الأعلى 🥚</h1>
+<div id="money">💰 أرباحك: 0</div>
+<div id="tasks">🎯 مهمة اليوم: 0 / 50 بيض</div>
+<div id="farm"></div>
+<div>
+  <button onclick="buyChicken()">شراء دجاجة 🐔 (50💰)</button>
+  <button onclick="upgradeCage()">ترقية القفص 🏗️</button>
+  <button onclick="openShop()">🛒 المتجر</button>
+  <button onclick="showLeaderboard()">📊 ترتيب اللاعبين</button>
+</div>
+
+<script>
+let money = localStorage.getItem('money') ? parseInt(localStorage.getItem('money')) : 0;
+let cageLevel = localStorage.getItem('cageLevel') ? parseInt(localStorage.getItem('cageLevel')) : 1;
+let chickens = localStorage.getItem('chickens') ? JSON.parse(localStorage.getItem('chickens')) : [{eggReady:false}];
+let dailyCollected = localStorage.getItem('dailyCollected') ? parseInt(localStorage.getItem('dailyCollected')) : 0;
+
+// حفظ البيانات
+function save() {
+  localStorage.setItem('money', money);
+  localStorage.setItem('cageLevel', cageLevel);
+  localStorage.setItem('chickens', JSON.stringify(chickens));
+  localStorage.setItem('dailyCollected', dailyCollected);
+}
+
+// تحديث عرض النقود والمهمة اليومية
+function updateStatus() {
+  document.getElementById('money').innerText = `💰 أرباحك: ${money}`;
+  document.getElementById('tasks').innerText = `🎯 مهمة اليوم: ${dailyCollected} / 50 بيض`;
+}
+
+// إنتاج البيض لكل دجاجة
+function layEgg(index) {
+  chickens[index].eggReady = true;
+  renderFarm();
+}
+
+// عرض المزرعة
+function renderFarm() {
+  const farm = document.getElementById('farm');
+  farm.innerHTML = '';
+  chickens.forEach((ch, i) => {
+    const div = document.createElement('div');
+    div.className = 'chicken';
+    div.innerHTML = `🐔<br>` + (ch.eggReady ? `<span class="egg" onclick="collectEgg(${i})">🥚</span>` : '');
+    farm.appendChild(div);
+  });
+}
+
+// جمع البيض
+function collectEgg(index) {
+  if(chickens[index].eggReady){
+    money += 10;
+    chickens[index].eggReady = false;
+    dailyCollected++;
+    if(dailyCollected>=50) { alert('🎉 لقد أكملت مهمة اليوم! مكافأة: 100 💰'); money+=100; dailyCollected=0; }
+    setTimeout(() => layEgg(index), 5000/cageLevel);
+    save();
+    updateStatus();
+    renderFarm();
+  }
+}
+
+// شراء دجاجة
+function buyChicken() {
+  if(money>=50){
+    money-=50;
+    chickens.push({eggReady:false});
+    setTimeout(() => layEgg(chickens.length-1), 5000/cageLevel);
+    save();
+    updateStatus();
+    renderFarm();
+  } else alert('ليس لديك ما يكفي من المال!');
+}
+
+// ترقية القفص
+function upgradeCage() {
+  const cost = cageLevel*100;
+  if(money>=cost){
+    money-=cost;
+    cageLevel++;
+    save();
+    updateStatus();
+    alert('تم ترقية القفص! الآن أسرع إنتاج البيض.');
+  } else alert(`تكلفة الترقية: ${cost} 💰`);
+}
+
+// متجر بيع البيض
+function openShop() {
+  let eggsAvailable = chickens.filter(ch=>ch.eggReady).length;
+  let toSell = Math.min(10, eggsAvailable);
+  if(toSell>0){
+    chickens.forEach(ch=>{ if(ch.eggReady && toSell>0){ ch.eggReady=false; toSell--; money+=10; }});
+    save();
+    updateStatus();
+    renderFarm();
+    alert('تم بيع البيض! 💰');
+  } else alert('ليس لديك بيض للبيع!');
+}
+
+// لوحة ترتيب اللاعبين (محلياً)
+function showLeaderboard() {
+  alert(`🏆 ترتيب اللاعبين محليًا:\nمالك اللعبة الحالي: ${money} 💰`);
+}
+
+// بدء اللعبة
+chickens.forEach((_, i)=>{ if(!chickens[i].eggReady) setTimeout(()=>layEgg(i), 5000/cageLevel); });
+updateStatus();
+renderFarm();
+</script>
+
+</body>
+</html>
