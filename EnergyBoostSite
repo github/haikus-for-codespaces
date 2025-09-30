@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EnergyBoost - Discover the Secret</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; font-family:'Poppins',sans-serif; background:#f5f7fa; color:#222; overflow-x:hidden; }
+  header { display:flex; justify-content:space-between; align-items:center; padding:15px 40px; background:#0d47a1; color:white; box-shadow:0 4px 12px rgba(0,0,0,0.2); position:sticky; top:0; z-index:1000; }
+  header h1 { margin:0; font-size:22px; font-weight:bold; }
+  header .trust { font-size:14px; color:#ffca28; font-weight:500; }
+
+  .hero { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:140px 20px 80px 20px; background:linear-gradient(135deg,#1e88e5,#42a5f5); color:white; position:relative; overflow:hidden; }
+  .hero h2 { font-size:40px; margin-bottom:20px; opacity:0; transform:translateY(-20px); animation:fadeUp 1s forwards; }
+  .hero p { font-size:18px; max-width:650px; margin:0 auto 30px auto; line-height:1.6; opacity:0; transform:translateY(-20px); animation:fadeUp 1s forwards 0.3s; }
+  .hero img { max-width:320px; border-radius:20px; box-shadow:0 15px 35px rgba(0,0,0,0.3); transform:rotateY(-15deg) rotateX(5deg); transition:transform 0.5s; opacity:0; animation:fadeUp 1s forwards 0.6s; }
+  .hero img:hover { transform:rotateY(0deg) rotateX(0deg) scale(1.05); }
+  .cta-btn { display:inline-block; background:#ffca28; color:#0d47a1; padding:18px 45px; border-radius:50px; font-weight:bold; font-size:20px; text-decoration:none; box-shadow:0 8px 22px rgba(0,0,0,0.3); transition:0.3s; opacity:0; animation:fadeUp 1s forwards 0.9s; }
+  .cta-btn:hover { background:#ffc107; box-shadow:0 10px 28px rgba(0,0,0,0.35); }
+
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+
+  section { max-width:1100px; margin:60px auto; padding:20px; text-align:center; }
+  section h3 { font-size:32px; color:#0d47a1; margin-bottom:40px; }
+  .benefits { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px; margin-bottom:50px; }
+  .benefit-card { background:white; padding:25px; border-radius:20px; box-shadow:0 8px 25px rgba(0,0,0,0.1); transition:transform 0.3s, box-shadow 0.3s; opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards; }
+  .benefit-card:hover { transform:translateY(-10px); box-shadow:0 12px 30px rgba(0,0,0,0.15); }
+  .benefit-card img { width:70px; margin-bottom:15px; }
+
+  .testimonials { display:grid; gap:25px; max-width:800px; margin:auto; }
+  .testimonial { background:white; padding:25px; border-radius:20px; box-shadow:0 8px 20px rgba(0,0,0,0.1); font-style:italic; opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards; }
+  .testimonial strong { display:block; margin-top:10px; color:#0d47a1; }
+
+  .order { text-align:center; padding:60px 20px; background:#f0f4ff; border-radius:25px; margin:60px 20px; box-shadow:0 10px 30px rgba(0,0,0,0.1); }
+  .order h3 { font-size:32px; margin-bottom:25px; }
+  .order p { margin-top:10px; font-size:14px; color:#666; }
+
+  footer { background:#0d47a1; color:white; text-align:center; padding:35px; margin-top:60px; font-size:14px; }
+  footer a { color:#ffca28; text-decoration:none; margin:0 10px; }
+
+  @media(max-width:768px){ .hero h2{font-size:30px;} .hero p{font-size:16px;} .benefit-card img{width:60px;} }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>EnergyBoost</h1>
+  <div class="trust">✅ Secure Checkout • 60-Day Money-Back Guarantee</div>
+</header>
+
+<section class="hero">
+  <h2>Unlock the Secret to Boosting Energy & Confidence</h2>
+  <p>Thousands have transformed their daily routine with EnergyBoost. Are you ready to see why it works so well?</p>
+  <img src="assets/product.png" alt="EnergyBoost Product">
+  <br><br>
+  <a href="https://6347f8i7xn0lap4t3c-dplbq3p.hop.clickbank.net" target="_blank" class="cta-btn">Discover Now</a>
+</section>
+
+<section id="benefits">
+  <h3>Why EnergyBoost Works</h3>
+  <div class="benefits">
+    <div class="benefit-card" style="animation-delay:0.2s;">
+      <img src="assets/icon1.png" alt="Energy">
+      <h4>Boost Daily Energy</h4>
+      <p>Stay productive and motivated all day without crashes.</p>
+    </div>
+    <div class="benefit-card" style="animation-delay:0.4s;">
+      <img src="assets/icon2.png" alt="Natural">
+      <h4>100% Natural Ingredients</h4>
+      <p>Safe, effective, and crafted with premium natural compounds.</p>
+    </div>
+    <div class="benefit-card" style="animation-delay:0.6s;">
+      <img src="assets/icon1.png" alt="Fast Results">
+      <h4>Fast Noticeable Results</h4>
+      <p>Most users feel improvements in 2–4 weeks of consistent use.</p>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <h3>What People Are Saying</h3>
+  <div class="testimonials">
+    <div class="testimonial" style="animation-delay:0.3s;">“EnergyBoost changed my life! I feel more confident and energetic every day.” <strong>– Sarah M.</strong></div>
+    <div class="testimonial" style="animation-delay:0.5s;">“Finally a supplement that really works! My focus and mood are better than ever.” <strong>– James K.</strong></div>
+    <div class="testimonial" style="animation-delay:0.7s;">“I can't believe the results! My daily energy skyrocketed.” <strong>– Emily R.</strong></div>
+  </div>
+</section>
+
+<section class="order">
+  <h3>Ready to Transform Your Life?</h3>
+  <a href="https://6347f8i7xn0lap4t3c-dplbq3p.hop.clickbank.net" target="_blank" class="cta-btn">Order Now</a>
+  <p>Affiliate Disclosure: I may earn a commission at no extra cost to you.</p>
+</section>
+
+<footer>
+  © 2025 EnergyBoost | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+</footer>
+
+</body>
+</html>
