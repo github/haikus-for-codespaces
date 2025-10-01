@@ -1,0 +1,74 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+local savedCFrame = nil
+local noclip = false
+
+-- GUI
+local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+gui.Name = "JoseHub"
+
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.new(0,200,0,180)
+frame.Position = UDim2.new(0.05,0,0.2,0)
+frame.BackgroundColor3 = Color3.fromRGB(40,40,40)
+frame.Active = true
+frame.Draggable = true
+
+local title = Instance.new("TextLabel", frame)
+title.Size = UDim2.new(1,0,0,30)
+title.Text = "JoseHub"
+title.BackgroundColor3 = Color3.fromRGB(20,20,20)
+title.TextColor3 = Color3.fromRGB(0,255,0)
+title.Font = Enum.Font.SourceSansBold
+title.TextSize = 20
+
+-- Función crear botón
+local function addBtn(txt,y,callback)
+    local b = Instance.new("TextButton", frame)
+    b.Size = UDim2.new(0,180,0,40)
+    b.Position = UDim2.new(0,10,0,y)
+    b.Text = txt
+    b.BackgroundColor3 = Color3.fromRGB(60,60,60)
+    b.TextColor3 = Color3.fromRGB(255,255,255)
+    b.Font = Enum.Font.SourceSansBold
+    b.TextSize = 18
+    b.MouseButton1Click:Connect(callback)
+end
+
+-- Botón TP (guardar pos)
+addBtn("TP (Guardar)",40,function()
+    savedCFrame = hrp.CFrame
+    game.StarterGui:SetCore("SendNotification",{Title="JoseHub",Text="Posición guardada ✅",Duration=2})
+end)
+
+-- Botón TP2 (ir a pos guardada)
+addBtn("TP2 (Ir)",90,function()
+    if savedCFrame then
+        hrp.CFrame = savedCFrame
+        game.StarterGui:SetCore("SendNotification",{Title="JoseHub",Text="Teletransportado 🚀",Duration=2})
+    else
+        game.StarterGui:SetCore("SendNotification",{Title="JoseHub",Text="No hay posición guardada ❌",Duration=2})
+    end
+end)
+
+-- Botón Tras (noclip)
+addBtn("Tras (Noclip)",140,function()
+    noclip = not noclip
+    local estado = noclip and "Activado 🟢" or "Desactivado 🔴"
+    game.StarterGui:SetCore("SendNotification",{Title="JoseHub",Text="Noclip "..estado,Duration=2})
+end)
+
+-- Bucle de Noclip
+RunService.Stepped:Connect(function()
+    if noclip and character then
+        for _,v in pairs(character:GetDescendants()) do
+            if v:IsA("BasePart") then
+                v.CanCollide = false
+            end
+        end
+    end
+end)
