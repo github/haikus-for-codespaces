@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر القديم الأصيل - إلكتروني</title>
+    <!-- تحميل Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- تحديد خط Almarai لجمالية التصميم العربي -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap');
+        body {
+            font-family: 'Almarai', sans-serif;
+            background-color: #e6f7e9; /* لون أخضر فاتح جداً للخلفية */
+        }
+        .main-card {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+        .main-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        .category-btn {
+            background-color: #d1fae5; /* أخضر نعناعي فاتح */
+            color: #10b981; /* أخضر داكن للنص */
+            transition: all 0.2s;
+            font-size: clamp(0.75rem, 3vw, 1.25rem); /* خط متكيف مع الشاشات */
+            padding: 1rem 0.5rem;
+            text-align: center;
+        }
+        .category-btn:hover {
+            background-color: #a7f3d0;
+            transform: translateY(-2px);
+        }
+        /* تصميم قائمة المقاسات */
+        .size-select {
+            appearance: none; /* إزالة مظهر المتصفح الافتراضي */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2310b981'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 0.75rem center;
+            background-size: 1.5em 1.5em;
+            padding-left: 2.5rem; /* مساحة للأيقونة */
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen">
+
+    <div id="app" class="max-w-6xl mx-auto bg-white rounded-3xl main-card p-6 md:p-10 my-4">
+        <!-- سيتم تحميل المحتوى هنا بواسطة JavaScript -->
+    </div>
+
+    <!-- رسالة التنبيه المخصصة (Alert Message Box) -->
+    <div id="message-box" class="fixed top-5 right-5 z-50 p-4 rounded-lg text-white bg-green-600 shadow-xl hidden transition-opacity duration-300">
+        <!-- محتوى الرسالة -->
+    </div>
+
+    <!-- ********************************** -->
+    <!-- FOOTER - جزء الشكر والتذييل الموحد -->
+    <!-- ********************************** -->
+    <footer class="bg-gray-800 text-white mt-12 p-8 rounded-t-3xl shadow-2xl">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 border-b border-gray-700 pb-6 mb-6">
+            
+            <!-- العمود 1: حول المتجر -->
+            <div>
+                <h4 class="text-xl font-bold mb-3 text-green-400">القديم الأصيل</h4>
+                <p class="text-sm text-gray-400">متجركم المتخصص في المنتجات الفريدة والأصلية. نحن نؤمن بالجودة والجمال في كل تفصيلة.</p>
+            </div>
+
+            <!-- العمود 2: روابط سريعة -->
+            <div>
+                <h4 class="text-xl font-bold mb-3 text-green-400">روابط سريعة</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" onclick="navigate('home'); return false;" class="text-gray-400 hover:text-white transition">الرئيسية</a></li>
+                    <li><a href="#" onclick="navigate('contact'); return false;" class="text-gray-400 hover:text-white transition">تواصل معنا</a></li>
+                    <li><a href="#" onclick="navigate('cart'); return false;" class="text-gray-400 hover:text-white transition">سلة المشتريات</a></li>
+                </ul>
+            </div>
+
+            <!-- العمود 3: معلومات التواصل -->
+            <div>
+                <h4 class="text-xl font-bold mb-3 text-green-400">معلومات التواصل</h4>
+                <p class="text-sm text-gray-400">
+                    العنوان: يطا، فلسطين
+                </p>
+            </div>
+
+            <!-- العمود 4: مشاركة المتجر -->
+            <div>
+                <h4 class="text-xl font-bold mb-3 text-green-400">مشاركة المتجر</h4>
+                <div class="flex space-x-3 space-x-reverse">
+                    <!-- زر المشاركة عبر واتساب -->
+                    <button onclick="shareLink('whatsapp')" class="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full transition duration-300 shadow-lg">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 1.751a10.231 10.231 0 0 0-8.913 5.143 10.24 10.24 0 0 0-.21 10.027l-1.028 3.737 3.86-1.01a10.25 10.25 0 0 0 4.881 1.253h.001a10.24 10.24 0 0 0 8.912-5.143 10.24 10.24 0 0 0 .21-10.027l1.028-3.737-3.86 1.01a10.25 10.25 0 0 0-4.881-1.253zm-5.485 5.568c.118-.3.268-.387.525-.387.258 0 .584.004.838.004.258 0 .584-.087.794.522.21.61.764 1.868.868 2.062.106.195.176.417.058.653-.118.236-.764 1.155-1.488 1.838-.724.68-1.393.978-1.63 1.144-.236.166-.46.258-.696.166-.236-.092-.584-.232-.864-.325-.28-.092-.572-.086-.774.128-.2.214-.764.764-1.09.914-.325.15-.615.15-.81.058-.2-.092-.525-.195-.81-.302-.28-.107-.468-.31-.696-.607-.228-.298-.485-.716-.677-1.123-.192-.407-.024-.755.15-1.062.174-.307.417-.525.61-.716.192-.192.41-.397.625-.607.214-.21.43-.525.688-.525h.105c.258 0 .344.032.525.41.18.378.61 1.482.61 1.597 0 .114.001.21-.057.348-.058.138-.41.522-.496.61-.087.092-.176.195-.087.35.087.156.41.677.854 1.058.444.38.997.55 1.144.522.147-.027.35-.114.51-.23.16-.114.288-.236.41-.387.123-.15.228-.41.38-.548.156-.138.496-.345.82-.378.324-.032.688-.032.948.016.258.048.78.344.978.475.195.138.387.195.45.302.064.107.064.21.016.35-.048.138-.344.41-.741.777-.397.367-.81.764-1.014.978-.204.214-.38.41-.18.777.204.367.724.962 1.09 1.155.367.192.688.24 1.144.114.457-.123.764-.51.897-.935.132-.424.22-.962.336-1.503.116-.54.124-.954.064-1.062-.06-1.143-.444-1.897-1.014-2.738-.57-.84-1.35-1.393-1.63-1.63-.28-.236-.677-.324-1.057-.186-.38.137-.525.195-.735.407z"/></svg>
+                    </button>
+                    <!-- زر المشاركة عبر فيسبوك -->
+                    <button onclick="shareLink('facebook')" class="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full transition duration-300 shadow-lg">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 5.084 3.738 9.31 8.601 9.949v-7.007H7.788V12h2.813V9.79c0-2.784 1.696-4.302 4.183-4.302.774 0 1.56.138 1.56.138v2.73H15.82c-1.373 0-1.803.856-1.803 1.74V12h3.11l-.5 2.942h-2.61V21.95C18.262 21.31 22 17.084 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                    </button>
+                </div>
+            </div>
+            
+             <!-- العمود 5: الشكر -->
+            <div class="md:col-span-1 text-center md:text-right">
+                <h4 class="text-3xl font-extrabold mb-2 text-yellow-300">شكراً</h4>
+                <p class="text-lg text-gray-300">لثقتكم ودعمكم المستمر لمتجرنا.</p>
+            </div>
+
+        </div>
+        
+        <div class="max-w-6xl mx-auto text-center text-sm text-gray-500">
+            &copy; 2024 متجر القديم الأصيل. جميع الحقوق محفوظة.
+        </div>
+    </footer>
+
+
+<script>
+    // حالة التطبيق (State Management)
+    let state = {
+        currentPage: 'home',
+        cartQuantities: {}, 
+        isCheckoutMode: false 
+    };
+
+    const mainCarImageURL = 'uploaded:IMG_0180.jpg-0b9e8dc8-caf5-472f-b2b2-3d3a2bff2330';
+
+    // بيانات الأقسام الجديدة (تمت إضافة "عطور" هنا)
+    const categories = {
+        'أحذية نسائية': 'Women\'s Shoes',
+        'أحذية رجالية': 'Men\'s Shoes',
+        'ملابس نسائية': 'Women\'s Clothes',
+        'ملابس رجالية': 'Men\'s Clothes',
+        'ملابس أطفال': 'Kids\' Clothes',
+        'ألعاب أطفال': 'Kids\' Toys',
+        'أدوات منزل': 'Home Tools',
+        'جمال': 'Beauty',
+        'شنط': 'Bags',
+        'عطور': 'Perfumes' // ** القسم الجديد **
+    };
+
+    const productsData = {};
+
+    // دالة مساعدة لاستخراج معرف المنتج الأساسي من مفتاح السلة المركب
+    // مثال: 'women-shoes-1-40' -> 'women-shoes-1'
+    function getBaseProductId(cartKey) {
+        const parts = cartKey.split('-');
+        // نعتبر أن المقاس هو الجزء الأخير فقط.
+        const size = parts.pop();
+        
+        // إعادة بناء معرف المنتج الأساسي (كل الأجزاء ما عدا المقاس الأخير)
+        return parts.join('-'); 
+    }
+
+    // دالة مساعدة للحصول على المنتج الأساسي من مفتاح السلة المركب
+    function getProductByCartKey(cartKey) {
+        const baseId = getBaseProductId(cartKey);
+        
+        // دمج جميع المنتجات في قائمة واحدة للبحث
+        const allProducts = Object.values(productsData).flat();
+        return allProducts.find(p => p.id === baseId);
+    }
+    
+    // دالة توليد المقاسات الافتراضية بناءً على نوع القسم
+    function getDefaultSizes(category) {
+        const categoryType = category.toLowerCase();
+        
+        if (categoryType.includes('أحذية')) {
+            // مقاسات الأحذية العامة
+            return [36, 37, 38, 39, 40, 41, 42, 43, 44, 45]; 
+        } else if (categoryType.includes('ملابس')) {
+            // مقاسات الملابس العامة
+            return ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']; 
+        } else if (categoryType.includes('عطور')) {
+            // مقاسات العطور بالمليلتر
+            return ['50 مل', '100 مل', '200 مل']; 
+        }
+        return undefined; // لا مقاسات لألعاب الأطفال، أدوات المنزل، الجمال، الشنط
+    }
+
+
+    // توليد بيانات المنتجات الوهمية وتوزيعها على الأقسام الجديدة
+    function generateProducts() {
+        
+        // 1. تهيئة قوائم المنتجات
+        Object.keys(categories).forEach(catName => {
+            productsData[catName] = [];
+        });
+
+        let productCount = 0;
+
+        // 2. توليد المنتجات الافتراضية
+        Object.keys(categories).forEach(catName => {
+            const catKey = categories[catName].toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').trim('-');
+            
+            // تحديد عدد المنتجات: 205 لجميع الأقسام لتلبية طلب المستخدم بوجود أكثر من 200 منتج في كل قسم
+            const numProducts = 205; 
+
+            for (let i = 0; i < numProducts; i++) {
+                productCount++;
+                
+                // توليد سعر متغير ومنطقي بناءً على النوع
+                let basePrice;
+                let descriptionPrefix = '';
+                let imageColor = '10b981'; // لون أخضر افتراضي
+
+                if (catName.includes('أحذية')) {
+                    basePrice = 100; 
+                    descriptionPrefix = 'حذاء رياضي مريح';
+                } else if (catName.includes('ملابس')) {
+                    basePrice = 50; 
+                    descriptionPrefix = 'قطعة ملابس أنيقة';
+                } else if (catName.includes('ألعاب')) {
+                    basePrice = 30; 
+                    descriptionPrefix = 'لعبة ممتعة ومفيدة';
+                } else if (catName.includes('عطور')) { // ** حالة القسم الجديد: عطور **
+                    basePrice = 120; // أسعار أعلى للعطور
+                    descriptionPrefix = 'عطر فاخر بثبات عالي';
+                    imageColor = '7c3aed'; // لون بنفسجي للعطور
+                } else {
+                    basePrice = 20; 
+                    descriptionPrefix = 'منتج عالي الجودة';
+                }
+                
+                // السعر يتراوح بين BasePrice و BasePrice + 250 تقريباً
+                const price = basePrice + Math.floor(Math.random() * 200) + (i % 5) * 10; 
+
+                productsData[catName].push({
+                    id: `${catKey}-${i + 2}`, 
+                    name: `${catName} ${descriptionPrefix} رقم ${i + 2}`,
+                    price: price,
+                    description: `${descriptionPrefix} من قسم ${catName}. هذا هو المنتج رقم ${i + 2}. تم توليده تلقائياً لدعم أكثر من 200 منتج في القائمة.`,
+                    imagePlaceholder: `https://placehold.co/300x200/${imageColor}/ffffff?text=${catName.replace(' ', '+')}+${i + 2}`,
+                    sizes: getDefaultSizes(catName)
+                });
+            }
+        });
+        
+        // **********************************************
+        // 3. إضافة وتوزيع المنتجات الخاصة على الأقسام الجديدة (يتم إضافتها في البداية)
+        // **********************************************
+        
+        // المنتج الخاص 1: الحذاء الرياضي الأسود (الآن في أحذية رجالية)
+        const newShoeProduct = {
+            id: 'men-shoes-1',
+            name: 'حذاء رياضي رجالي أسود مريح - منتج مميز',
+            price: 150, 
+            description: 'حذاء رياضي عصري ومريح للغاية بتصميم رجالي كلاسيكي، مثالي للمشي والرياضة.', 
+            imagePlaceholder: 'https://placehold.co/300x200/000000/ffffff?text=حذاء+رجالي+رياضي',
+            sizes: getDefaultSizes('أحذية رجالية') 
+        };
+        productsData['أحذية رجالية'].unshift(newShoeProduct);
+
+        // المنتج الخاص 2: حذاء النمري (الآن في أحذية نسائية)
+        const leopardShoe = {
+            id: 'women-shoes-leopard',
+            name: 'حذاء كعب عالي نسائي بنقشة النمر - منتج مميز',
+            price: 250, 
+            description: 'حذاء نسائي أنيق بكعب عالي وتصميم مميز بنقشة النمر الجريئة لإطلالة سهرة.',
+            imagePlaceholder: 'https://placehold.co/300x200/F08080/4F4F4F?text=حذاء+نسائي+النمري', 
+            sizes: getDefaultSizes('أحذية نسائية') // تم تغيير مقاساته لتكون متوافقة مع getDefaultSizes
+        };
+        productsData['أحذية نسائية'].push(leopardShoe);
+        
+        // المنتج الخاص 3: فستان النمري (الآن في ملابس نسائية)
+        const leopardDress = {
+            id: 'women-clothes-leopard',
+            name: 'فستان صيفي قصير نسائي بنقشة النمر - منتج مميز',
+            price: 180, 
+            description: 'فستان عصري صيفي بخامة خفيفة ونقشة النمر، مثالي للإطلالات اليومية الصيفية.',
+            imagePlaceholder: 'https://placehold.co/300x200/FFDAB9/4F4F4F?text=فستان+نسائي+النمري',
+            sizes: getDefaultSizes('ملابس نسائية') 
+        };
+        productsData['ملابس نسائية'].push(leopardDress);
+        
+        // منتج خاص لقسم ألعاب الأطفال
+        const kidsToy = {
+            id: 'kids-toys-featured',
+            name: 'لعبة مكعبات بناء عملاقة - منتج مميز',
+            price: 99, 
+            description: 'مجموعة مكعبات كبيرة وآمنة لتعليم الأطفال وتنمية مهاراتهم الحركية.',
+            imagePlaceholder: 'https://placehold.co/300x200/1E88E5/FFFFFF?text=ألعاب+أطفال',
+            sizes: getDefaultSizes('ألعاب أطفال') 
+        };
+        productsData['ألعاب أطفال'].unshift(kidsToy);
+        
+        // ** منتج خاص لقسم العطور **
+        const specialPerfume = {
+            id: 'perfumes-oud-special',
+            name: 'عطر العود الشرقي الفاخر - منتج مميز',
+            price: 350, 
+            description: 'عطر عربي أصيل برائحة العود والخشب، يتميز بثبات عالٍ وفخامة مطلقة، مناسب للجنسين.',
+            imagePlaceholder: 'https://placehold.co/300x200/4c1d95/ffffff?text=عطر+عود+فاخر',
+            sizes: getDefaultSizes('عطور') 
+        };
+        productsData['عطور'].unshift(specialPerfume);
+
+
+    }
+
+    generateProducts();
+
+    // ************************
+    // وظائف مساعدة
+    // ************************
+
+    // وظيفة لعرض رسالة تنبيه مخصصة (بدلاً من alert)
+    function showMessage(message, isError = false) {
+        const msgBox = document.getElementById('message-box');
+        msgBox.textContent = message;
+        msgBox.classList.remove('hidden', 'opacity-0', 'bg-red-600', 'bg-green-600');
+        msgBox.classList.add(isError ? 'bg-red-600' : 'bg-green-600', 'opacity-100');
+
+        setTimeout(() => {
+            msgBox.classList.remove('opacity-100');
+            msgBox.classList.add('opacity-0');
+            setTimeout(() => {
+                msgBox.classList.add('hidden');
+            }, 300);
+        }, 3000);
+    }
+
+    // وظيفة التنقل بين الصفحات
+    function navigate(page) {
+        state.currentPage = page;
+        // فقط ادخل وضع الدفع إذا كانت الصفحة هي "تواصل معنا" والسلة غير فارغة
+        state.isCheckoutMode = (page === 'contact' && Object.keys(state.cartQuantities).length > 0);
+        renderApp();
+        window.scrollTo(0, 0); 
+    }
+
+    // وظيفة المشاركة عبر السوشيال ميديا
+    function shareLink(platform) {
+        const url = encodeURIComponent(window.location.href);
+        const text = encodeURIComponent('اكتشف متجر "القديم الأصيل" للمنتجات الفريدة والأصلية! تسوق الآن: ');
+        let shareUrl = '';
+
+        if (platform === 'whatsapp') {
+            shareUrl = `whatsapp://send?text=${text}${url}`;
+        } else if (platform === 'facebook') {
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+        } else {
+            return;
+        }
+
+        window.open(shareUrl, '_blank');
+        showMessage(`جارِ فتح تطبيق ${platform === 'whatsapp' ? 'واتساب' : 'فيسبوك'} للمشاركة.`);
+    }
+
+
+    // ************************
+    // وظائف السلة والحساب
+    // ************************
+
+    // وظيفة الحصول على تفاصيل عناصر السلة والإجمالي
+    function getCartItems() {
+        const cartItems = [];
+        let grandTotal = 0;
+
+        for (const cartKey in state.cartQuantities) {
+            const qty = state.cartQuantities[cartKey];
+            if (qty > 0) {
+                // الحصول على تفاصيل المنتج الأساسي باستخدام المفتاح المركب
+                const product = getProductByCartKey(cartKey);
+                
+                if (product) {
+                    const itemTotal = product.price * qty;
+                    grandTotal += itemTotal;
+
+                    // المقاس هو الجزء الأخير من المفتاح المركب (مثال: 40 أو L أو 100 مل)
+                    const size = cartKey.split('-').pop();
+
+                    cartItems.push({
+                        ...product,
+                        cartKey: cartKey, // حفظ المفتاح المركب لإجراء التعديلات
+                        size: size,       // إضافة المقاس
+                        quantity: qty,
+                        itemTotal: itemTotal
+                    });
+                }
+            }
+        }
+
+        return { items: cartItems, total: grandTotal };
+    }
+
+    // وظيفة زيادة/نقصان الكمية (تأخذ المفتاح المركب: cartKey)
+    function updateQuantity(cartKey, change) {
+        const currentQty = state.cartQuantities[cartKey] || 0;
+        const newQty = Math.max(0, currentQty + change); 
+
+        if (newQty === 0) {
+            delete state.cartQuantities[cartKey];
+            showMessage(`تم حذف المنتج والمقاس من السلة.`);
+        } else {
+            state.cartQuantities[cartKey] = newQty;
+        }
+        
+        renderApp(); 
+    }
+
+    // وظيفة إضافة المنتج للسلة (تأخذ المقاس المختار: selectedSize)
+    function addToCart(productId, productName, selectedSize) {
+        
+        // التحقق من المقاس إذا كان المنتج يتطلب مقاسات (يملك قائمة sizes)
+        const product = getProductByCartKey(productId);
+        const requiresSize = product && product.sizes && product.sizes.length > 0;
+        
+        if (requiresSize && (!selectedSize || selectedSize === '0')) {
+            showMessage(`يرجى اختيار المقاس أولاً لإضافة المنتج "${productName}".`, true);
+            return;
+        }
+
+        // بناء المفتاح المركب للسلة: ProductID-Size (أو ProductID-N/A إذا لا يوجد مقاس)
+        const finalSize = requiresSize ? selectedSize : 'N/A';
+        const cartKey = `${productId}-${finalSize}`;
+        
+        const currentQty = state.cartQuantities[cartKey] || 0;
+        state.cartQuantities[cartKey] = currentQty + 1; 
+
+        showMessage(`تمت إضافة قطعة واحدة من "${productName}" ${requiresSize ? 'مقاس ' + finalSize : ''} إلى السلة.`);
+        
+        if (state.currentPage === 'cart') {
+             renderApp();
+        }
+    }
+
+
+    // ************************
+    // بناء الصفحات
+    // ************************
+
+    function renderHeader() {
+        const { items } = getCartItems();
+        const cartCount = items.length;
+
+        return `
+            <header class="flex flex-col md:flex-row justify-between items-center border-b pb-4 mb-6">
+                <h1 class="text-3xl font-extrabold text-green-700">القديم الأصيل</h1>
+                <nav class="flex space-x-4 space-x-reverse mt-4 md:mt-0 text-lg font-medium">
+                    <button onclick="navigate('home')" class="text-gray-600 hover:text-green-600 transition duration-150 p-2 ${state.currentPage === 'home' ? 'text-green-600 border-b-2 border-green-600' : ''}">
+                        الرئيسية
+                    </button>
+                    <button onclick="navigate('contact')" class="text-gray-600 hover:text-green-600 transition duration-150 p-2 ${state.currentPage === 'contact' ? 'text-green-600 border-b-2 border-green-600' : ''}">
+                        تواصل معنا
+                    </button>
+                    <button onclick="navigate('cart')" class="text-gray-600 hover:text-green-600 transition duration-150 p-2 relative ${state.currentPage === 'cart' ? 'text-green-600 border-b-2 border-green-600' : ''}">
+                        السلة
+                        ${cartCount > 0 ? `<span class="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">${cartCount}</span>` : ''}
+                    </button>
+                </nav>
+            </header>
+        `;
+    }
+
+    function renderHome() {
+        return `
+            <!-- جزء الترحيب والصورة -->
+            <div class="grid md:grid-cols-3 gap-8 items-center mb-10">
+                <div class="md:col-span-1">
+                    <h2 class="text-5xl md:text-6xl font-black text-gray-800 mb-2">القديم الأصيل</h2>
+                    <p class="text-xl text-gray-600 mb-6">مرحباً بكم في متجرنا الإلكتروني</p>
+                    <!-- مربع البحث -->
+                    <div class="relative max-w-lg">
+                        <input type="text" placeholder="بحث" class="w-full p-3 pr-10 border-2 border-green-300 rounded-xl focus:outline-none focus:border-green-500 transition duration-150">
+                        <button class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-green-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <!-- صورة توضيحية -->
+                <div class="md:col-span-2 rounded-xl overflow-hidden shadow-2xl">
+                    <img src="${mainCarImageURL}" alt="صورة حذاء رياضي أسود" class="w-full h-72 md:h-96 object-cover">
+                </div>
+            </div>
+
+            <!-- أقسام المنتجات -->
+            <h3 class="text-3xl font-bold text-gray-800 mb-5 border-t pt-6">الأقسام الرئيسية</h3>
+            <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
+                ${Object.keys(categories).map(cat => `
+                    <button onclick="navigate('${cat}')" class="category-btn p-3 rounded-xl font-bold shadow-lg transform hover:scale-105">
+                        ${cat}
+                    </button>
+                `).join('')}
+            </div>
+
+            <!-- المنتجات المميزة الجديدة -->
+            <h3 class="text-3xl font-bold text-gray-800 mb-5 border-t pt-6 mt-10">منتجات مختارة</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                ${Object.keys(productsData).slice(0, 8).map(cat => { // عرض أول 8 أقسام فقط
+                    // نأخذ المنتج الثاني (الذي تم توليده) لعرض منتج مختلف عن المنتج المميز في البداية
+                    const product = productsData[cat][1]; 
+                    if (!product) return ''; 
+                    
+                    return `
+                        <div class="bg-gray-50 p-3 rounded-xl shadow-lg border border-green-100 flex flex-col items-center text-center transition duration-300 hover:shadow-2xl hover:scale-[1.02]">
+                            <h4 class="text-lg font-bold text-green-700 mb-2 truncate w-full">${cat}</h4>
+                            <img src="${product.imagePlaceholder}" alt="صورة منتج مميز" onerror="this.src='https://placehold.co/300x200/cccccc/333333?text=صورة+غير+متوفرة'" class="w-full h-32 object-cover rounded-lg mb-3">
+                            
+                            <p class="text-sm font-medium text-gray-800 truncate w-full">${product.name}</p>
+                            <p class="text-xl font-bold text-red-600 mt-1 mb-3">${product.price.toLocaleString()} ₪</p>
+                            
+                            <!-- زر الانتقال للقسم -->
+                            <button onclick="navigate('${cat}')" class="w-full bg-green-500 text-white text-sm p-2 rounded-lg font-bold hover:bg-green-600 transition duration-200">
+                                تصفح القسم (${productsData[cat].length} منتج)
+                            </button>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+        `;
+    }
+
+    function renderCategoryPage(category) {
+        const productList = productsData[category] || [];
+        const productCount = productList.length;
+
+        return `
+            <div class="mb-8">
+                <button onclick="navigate('home')" class="text-green-600 hover:text-green-800 flex items-center mb-6 text-lg font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                    </svg>
+                    العودة للرئيسية
+                </button>
+                <h2 class="text-4xl font-bold text-gray-800 border-b pb-4">${category}</h2>
+                <p class="text-lg text-green-700 mt-2 font-medium">يحتوي هذا القسم على <span class="text-red-600 font-extrabold">${productCount}</span> منتج.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                ${productList.map(product => {
+                    const hasSizes = product.sizes && product.sizes.length > 0;
+                    
+                    // حساب إجمالي الكميات لهذا المنتج (بجميع مقاساته)
+                    const totalQtyInCart = Object.keys(state.cartQuantities)
+                        .filter(key => key.startsWith(product.id + '-'))
+                        .reduce((sum, key) => sum + state.cartQuantities[key], 0);
+
+                    return `
+                        <div class="bg-gray-50 p-5 rounded-xl shadow-lg border border-gray-200 flex flex-col transition duration-300 hover:shadow-xl">
+                            <img src="${product.imagePlaceholder}" alt="صورة منتج" onerror="this.src='https://placehold.co/300x200/cccccc/333333?text=صورة+غير+متوفرة'" class="w-full h-48 object-cover rounded-lg mb-4">
+                            
+                            <h3 class="text-2xl font-bold text-gray-800 h-16 overflow-hidden">${product.name}</h3>
+                            <p class="text-lg font-semibold text-green-600 my-2">${product.price.toLocaleString()} ₪</p>
+                            
+                            <p class="text-gray-600 text-sm mb-4 flex-grow h-12 overflow-hidden">${product.description}</p>
+                            
+                            <!-- اختيار المقاس - يظهر فقط للمنتجات التي لديها مقاسات -->
+                            ${hasSizes ? `
+                                <div class="mb-4">
+                                    <label for="size-select-${product.id}" class="block text-sm font-medium text-gray-700 mb-1">اختيار المقاس:</label>
+                                    <select id="size-select-${product.id}" class="size-select w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 font-medium focus:ring-green-500 focus:border-green-500">
+                                        <option value="0" disabled selected>-- اختر المقاس --</option>
+                                        ${product.sizes.map(size => `
+                                            <option value="${size}">${size}</option>
+                                        `).join('')}
+                                    </select>
+                                </div>
+                            ` : '<div class="h-10"></div>'} <!-- مساحة فارغة للحفاظ على التناسق -->
+
+                            <!-- عرض إجمالي الكمية في السلة -->
+                            <div class="mb-4 text-center p-2 bg-green-100 rounded-lg">
+                                <span class="text-gray-700 font-medium">إجمالي الكميات في السلة:</span>
+                                <span class="text-green-700 font-bold text-xl">${totalQtyInCart}</span>
+                            </div>
+
+                            <!-- زر الإضافة للسلة -->
+                            <button onclick="
+                                const sizeElement = document.getElementById('size-select-${product.id}');
+                                const selectedSize = sizeElement ? sizeElement.value : 'N/A';
+                                addToCart('${product.id}', '${product.name}', selectedSize);
+                            " class="w-full bg-green-600 text-white p-3 rounded-lg font-bold hover:bg-green-700 transition duration-200 shadow-md hover:shadow-lg">
+                                إضافة للسلة
+                            </button>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+        `;
+    }
+
+    function renderCartPage() {
+        const { items, total } = getCartItems();
+
+        if (items.length === 0) {
+            return `
+                <div class="max-w-md mx-auto text-center py-20 bg-gray-50 rounded-xl shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 mx-auto text-green-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">سلة المشتريات فارغة</h2>
+                    <p class="text-gray-600 mb-6">هل أنت جاهز لبدء التسوق؟</p>
+                    <button onclick="navigate('home')" class="bg-green-600 text-white p-3 rounded-lg font-bold hover:bg-green-700 transition duration-200 shadow-md">
+                        البدء بالتسوق الآن
+                    </button>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="mb-8">
+                <button onclick="navigate('home')" class="text-green-600 hover:text-green-800 flex items-center mb-6 text-lg font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                    </svg>
+                    العودة للرئيسية
+                </button>
+                <h2 class="text-4xl font-bold text-gray-800 border-b pb-4">سلة المشتريات (${items.length} صنف)</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- قائمة المنتجات (2/3 العرض) -->
+                <div class="lg:col-span-2 space-y-4">
+                    ${items.map(item => `
+                        <div class="flex items-center bg-white border border-gray-100 p-4 rounded-xl shadow-sm hover:shadow-md transition">
+                            <img src="${item.imagePlaceholder}" alt="${item.name}" onerror="this.src='https://placehold.co/80x80/cccccc/333333?text=منتج'" class="w-20 h-20 object-cover rounded-lg ml-4">
+                            
+                            <div class="flex-grow">
+                                <p class="text-lg font-bold text-gray-800">${item.name}</p>
+                                <!-- عرض المقاس المختار بوضوح -->
+                                <p class="text-sm font-extrabold text-red-500">${item.size === 'N/A' ? 'لا يوجد مقاس' : `المقاس: ${item.size}`}</p>
+                                <p class="text-sm text-gray-500">${item.price.toLocaleString()} ₪ للوحدة</p>
+                            </div>
+
+                            <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden mx-4">
+                                <!-- استخدام cartKey (المفتاح المركب) لتحديث الكمية -->
+                                <button onclick="updateQuantity('${item.cartKey}', -1)" class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center hover:bg-gray-300 transition text-xl font-bold rounded-l-lg">
+                                    -
+                                </button>
+                                <span class="w-10 h-8 flex items-center justify-center bg-white text-gray-800 font-medium">${item.quantity}</span>
+                                <button onclick="updateQuantity('${item.cartKey}', 1)" class="bg-gray-200 text-gray-700 w-8 h-8 flex items-center justify-center hover:bg-gray-300 transition text-xl font-bold rounded-r-lg">
+                                    +
+                                </button>
+                            </div>
+                            
+                            <div class="text-right">
+                                <p class="text-xl font-extrabold text-red-600">${item.itemTotal.toLocaleString()} ₪</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <!-- ملخص الطلب والإجمالي (1/3 العرض) -->
+                <div class="lg:col-span-1 bg-green-50 p-6 rounded-xl shadow-lg border border-green-200 h-fit">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-3">ملخص الطلب</h3>
+                    
+                    <div class="flex justify-between text-lg mb-2">
+                        <span>الإجمالي الفرعي:</span>
+                        <span class="font-medium">${total.toLocaleString()} ₪</span>
+                    </div>
+
+                    <div class="flex justify-between text-lg border-t pt-3 mt-4 font-bold text-3xl">
+                        <span>الإجمالي الكلي:</span>
+                        <span class="text-red-700">${total.toLocaleString()} ₪</span>
+                    </div>
+
+                    <button onclick="navigate('contact')" class="w-full bg-green-600 text-white p-3 mt-6 rounded-lg font-bold hover:bg-green-700 transition duration-200 shadow-xl transform hover:scale-[1.01]">
+                        تأكيد الطلب والمتابعة
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderContact() {
+        const { items, total } = getCartItems();
+        const contactTitle = state.isCheckoutMode ? 'تأكيد الطلب عبر واتساب' : 'تواصل معنا (استفسارات عامة)';
+        const contactDescription = state.isCheckoutMode 
+            ? 'يرجى إدخال بيانات الشحن الخاصة بك وإرسالها عبر زر الواتساب أدناه لإتمام الطلب. سيتم فتح محادثة جديدة على واتساب تحتوي على ملخص الطلب.'
+            : 'يسرنا تواصلكم معنا، يرجى ملء النموذج التالي وإرسال رسالتكم عبر واتساب مباشرة.';
+        
+        if (state.isCheckoutMode && items.length === 0) {
+            // في حالة كان وضع الدفع نشطاً لكن السلة فارغة
+            return renderCartPage();
+        }
+
+        const orderSummaryHtml = state.isCheckoutMode ? `
+            <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200 mb-6">
+                <h4 class="text-xl font-bold text-gray-800 mb-2">ملخص طلبك</h4>
+                <ul class="space-y-1 text-sm">
+                    ${items.map(item => `
+                        <li class="flex justify-between">
+                            <span class="text-gray-600">${item.name} ${item.size === 'N/A' ? '' : `(مقاس ${item.size})`} (x${item.quantity})</span>
+                            <span class="font-bold">${item.itemTotal.toLocaleString()} ₪</span>
+                        </li>
+                    `).join('')}
+                </ul>
+                <div class="flex justify-between border-t pt-2 mt-2 font-extrabold text-lg text-red-700">
+                    <span>الإجمالي النهائي:</span>
+                    <span>${total.toLocaleString()} ₪</span>
+                </div>
+            </div>
+        ` : '';
+
+
+        return `
+            <div class="max-w-xl mx-auto">
+                <button onclick="navigate(state.isCheckoutMode ? 'cart' : 'home')" class="text-green-600 hover:text-green-800 flex items-center mb-6 text-lg font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                    </svg>
+                    العودة إلى ${state.isCheckoutMode ? 'السلة' : 'الرئيسية'}
+                </button>
+                <h2 class="text-4xl font-bold text-gray-800 mb-6 border-b pb-3">${contactTitle}</h2>
+                <p class="text-gray-600 mb-6">${contactDescription}</p>
+                
+                ${orderSummaryHtml}
+
+                <!-- النموذج الآن يعتمد بالكامل على زر الواتساب للإرسال -->
+                <form id="contact-form" class="space-y-4 bg-gray-50 p-6 rounded-xl shadow-inner">
+                    <!-- حقل الاسم -->
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">الاسم الكامل</label>
+                        <input type="text" id="name" name="name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 transition">
+                    </div>
+
+                    <!-- حقل رقم الهاتف -->
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">رقم الهاتف</label>
+                        <input type="tel" id="phone" name="phone" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 transition" placeholder="مثال: 97259xxxxxxx">
+                    </div>
+                    
+                    <!-- حقل البريد الإلكتروني -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">البريد الإلكتروني (الإيميل)</label>
+                        <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 transition">
+                    </div>
+
+                    <!-- حقل العنوان (للطلب) أو حقل الرسالة (للتواصل العام) -->
+                    <div>
+                        <label for="address" class="block text-sm font-medium text-gray-700 mb-1">${state.isCheckoutMode ? 'العنوان بالتفصيل (للتوصيل)' : 'نص الرسالة أو الاستفسار'}</label>
+                        <textarea id="address" name="address" rows="3" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 transition"></textarea>
+                    </div>
+
+                    <!-- زر الإرسال الوحيد (واتساب) -->
+                    <button type="button" onclick="sendViaWhatsapp()" class="w-full flex items-center justify-center bg-green-600 text-white p-3 mt-4 rounded-lg font-bold hover:bg-green-700 transition duration-200 shadow-md transform hover:scale-[1.01]">
+                        <svg class="w-5 h-5 ml-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 3.197 1.258 6.138 3.32 8.356L2.016 24l4.63-1.22c1.94 1.054 4.14 1.63 6.354 1.63 6.627 0 12-5.373 12-12C24 5.373 18.627 0 12 0zm5.66 14.868c-.105-.17-.384-.27-.803-.482-.42-.213-2.484-1.22-2.863-1.352-.38-.13-.655-.195-.935.195-.278.39-.997 1.35-.18 3.15-.316.35-.61.39-.904.098-1.554-.834-3.04-1.618-4.145-3.565-.89-1.57-.27-2.43.11-2.81.314-.316.71-.58.948-.87.236-.29.255-.544.18-1.014-.075-.47-.42-.98-.60-1.39-.18-.41-.36-.347-.514-.354-.156-.007-.33-.007-.506-.007-.174 0-.46.065-.705.32-.245.257-.935.917-.935 2.235 0 1.32.96 2.583 1.09 2.766.13.183 1.88 2.87 4.577 3.998 2.697 1.13 2.697.755 3.18 1.12.485.365.485.803.11 1.23-.375.426-1.56 1.48-1.92 1.83z"/></svg>
+                        ${state.isCheckoutMode ? 'إرسال تفاصيل الطلب عبر واتساب' : 'إرسال رسالة تواصل عبر واتساب'}
+                    </button>
+                </form>
+            </div>
+        `;
+    }
+    
+    // وظيفة معالجة إرسال الواتساب
+    function sendViaWhatsapp() {
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        // استخدام حقل العنوان/الرسالة
+        const addressOrMessage = document.getElementById('address').value;
+
+        // التحقق من أن جميع الحقول المطلوبة مملوءة
+        if (!name || !phone || !email || !addressOrMessage) {
+            showMessage("يرجى ملء جميع الحقول أولاً قبل الإرسال عبر واتساب.", true);
+            return;
+        }
+
+        const businessNumber = '97259xxxxxxx'; 
+        let message = '';
+
+        if (state.isCheckoutMode) {
+            // وضع إرسال الطلب (يتضمن ملخص السلة)
+            const { items, total } = getCartItems();
+            
+            if (items.length === 0) {
+                 showMessage("السلة فارغة. لا يمكن إرسال طلب شراء.", true);
+                 return;
+            }
+            
+            let orderDetails = items.map(item => 
+                `${item.name} ${item.size === 'N/A' ? '' : `مقاس ${item.size}`} (الكمية: ${item.quantity}، الإجمالي: ${item.itemTotal.toLocaleString()} ₪)`
+            ).join('%0A- ');
+
+            message = `*تأكيد طلب شراء جديد*%0A%0A%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84 %D8%A7%D9%84%D8%B7%D9%84%D8%A8:%0A- ${orderDetails}%0A%0A*الإجمالي النهائي:* ${total.toLocaleString()} ₪%0A%0A*بيانات العميل:*%0Aالاسم: ${name}%0Aالهاتف: ${phone}%0Aالإيميل: ${email}%0Aالعنوان المفصّل: ${addressOrMessage}`;
+            
+        } else {
+            // وضع التواصل العام
+            message = `طلب تواصل عام من موقع "القديم الأصيل":%0Aالاسم: ${name}%0Aالهاتف: ${phone}%0Aالبريد الإلكتروني: ${email}%0Aالرسالة: ${addressOrMessage}`;
+        }
+
+        window.open(`https://api.whatsapp.com/send?phone=${businessNumber}&text=${message}`, '_blank');
+        showMessage("تم تحويلك إلى تطبيق واتساب لإكمال الإرسال. تأكد من إرسال الرسالة.");
+        
+        // مسح الحقول بعد الإرسال الناجح عبر واتساب
+        document.getElementById('contact-form').reset();
+    }
+
+    // ************************
+    // وظيفة العرض الرئيسية
+    // ************************
+
+    function renderApp() {
+        const appDiv = document.getElementById('app');
+        let content = '';
+
+        content += renderHeader();
+
+        // قائمة الأقسام العربية
+        const categoryNames = Object.keys(categories);
+        
+        if (state.currentPage === 'home') {
+            content += renderHome();
+        } else if (state.currentPage === 'cart') {
+            content += renderCartPage();
+        } else if (state.currentPage === 'contact') {
+            content += renderContact();
+        } else if (categoryNames.includes(state.currentPage)) {
+            // إذا كانت الصفحة الحالية ضمن الأقسام المحددة
+            content += renderCategoryPage(state.currentPage);
+        } else {
+            content += renderHome(); 
+        }
+
+        appDiv.innerHTML = content;
+
+        // **************** ملاحظة التعديل: إزالة معالج حدث Submit ****************
+        // تم إزالة معالج حدث 'submit' لنموذج التواصل، وتم الاعتماد كلياً على زر الواتساب
+        // ************************************************************************
+    }
+
+    // تشغيل التطبيق عند تحميل الصفحة
+    window.onload = () => {
+        renderApp();
+    };
+
+</script>
+
+</body>
+</html>
