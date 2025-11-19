@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design Demo - TechBlog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            padding: 20px;
+        }
+        
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2563eb;
+            margin-bottom: 10px;
+            font-size: clamp(1.5rem, 2vw + 1rem, 2.5rem);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 40px;
+            font-size: clamp(0.9rem, 1vw + 0.5rem, 1.1rem);
+        }
+        
+        .viewport-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .viewport-demo {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .viewport-demo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.2);
+        }
+        
+        .viewport-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+        }
+        
+        .viewport-size {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .iframe-container {
+            position: relative;
+            background: #e2e8f0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+        }
+        
+        .device-frame {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 0 8px #1e293b, 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .desktop-frame {
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .tablet-frame {
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .mobile-frame {
+            width: 100%;
+            max-width: 375px;
+        }
+        
+        iframe {
+            width: 100%;
+            border: none;
+            display: block;
+        }
+        
+        .features {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+        
+        .features h2 {
+            color: #2563eb;
+            margin-bottom: 20px;
+            font-size: clamp(1.3rem, 1.5vw + 0.8rem, 2rem);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature-item {
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+        
+        .feature-item h3 {
+            color: #1e293b;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .feature-item p {
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 40px;
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            border-radius: 12px;
+            color: white;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #2563eb;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>🎨 Elastic Web Design Demonstration</h1>
+        <p class="subtitle">See how the TechBlog adapts seamlessly across different devices</p>
+        
+        <div class="viewport-grid">
+            <!-- Desktop View -->
+            <div class="viewport-demo">
+                <div class="viewport-header">
+                    <div>💻 Desktop View</div>
+                    <div class="viewport-size">> 1024px</div>
+                </div>
+                <div class="iframe-container">
+                    <div class="device-frame desktop-frame">
+                        <iframe src="/blog" height="500"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tablet View -->
+            <div class="viewport-demo">
+                <div class="viewport-header">
+                    <div>📱 Tablet View</div>
+                    <div class="viewport-size">768px - 1024px</div>
+                </div>
+                <div class="iframe-container">
+                    <div class="device-frame tablet-frame">
+                        <iframe src="/blog" height="500"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile View -->
+            <div class="viewport-demo">
+                <div class="viewport-header">
+                    <div>📱 Mobile View</div>
+                    <div class="viewport-size">< 768px</div>
+                </div>
+                <div class="iframe-container">
+                    <div class="device-frame mobile-frame">
+                        <iframe src="/blog" height="500"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="features">
+            <h2>✨ Elastic Design Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>🔤 Fluid Typography</h3>
+                    <p>Text scales smoothly using CSS clamp() for optimal readability across all screen sizes</p>
+                </div>
+                <div class="feature-item">
+                    <h3>📐 Flexible Grids</h3>
+                    <p>CSS Grid with auto-fit and minmax() creates layouts that adapt intelligently</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🎯 Touch-Friendly</h3>
+                    <p>Buttons and interactive elements meet minimum 44px touch target guidelines</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🍔 Hamburger Menu</h3>
+                    <p>Navigation transforms into a slide-out menu on mobile and tablet devices</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🎨 Smooth Transitions</h3>
+                    <p>All layout changes include smooth CSS transitions for a polished feel</p>
+                </div>
+                <div class="feature-item">
+                    <h3>📊 Adaptive Layouts</h3>
+                    <p>3-column → 2-column → 1-column grid adapts based on available space</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>Ready to Experience It?</h2>
+            <p>Visit the full blog to see elastic design in action</p>
+            <a href="/blog" class="cta-button">View Full Blog →</a>
+        </div>
+    </div>
+</body>
+</html>
