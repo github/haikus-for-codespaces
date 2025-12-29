@@ -1,0 +1,94 @@
+name: Close Open Pull Requests
+
+# This workflow can be triggered manually to close all open PRs
+# in the repository with a standard message.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (only list PRs, do not close them)'
+        required: false
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+jobs:
+  close-prs:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      issues: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Close all open PRs
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const dryRun = '${{ inputs.dry_run }}' === 'true';
+            const commentMessage = 'This is a template repo, with changes owned by the Codespaces team.';
+            
+            console.log(`Dry run mode: ${dryRun}`);
+            console.log('Fetching open pull requests...');
+            
+            // Get all open PRs
+            const { data: pullRequests } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100
+            });
+            
+            if (pullRequests.length === 0) {
+              console.log('No open pull requests found.');
+              return;
+            }
+            
+            console.log(`Found ${pullRequests.length} open pull request(s):`);
+            
+            for (const pr of pullRequests) {
+              console.log(`\nPR #${pr.number}: ${pr.title}`);
+              console.log(`  Author: ${pr.user.login}`);
+              console.log(`  Created: ${pr.created_at}`);
+              
+              if (!dryRun) {
+                try {
+                  // Add comment to the PR
+                  console.log(`  Adding comment...`);
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: pr.number,
+                    body: commentMessage
+                  });
+                  
+                  // Close the PR
+                  console.log(`  Closing PR...`);
+                  await github.rest.pulls.update({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    pull_number: pr.number,
+                    state: 'closed'
+                  });
+                  
+                  console.log(`  ✓ Successfully closed PR #${pr.number}`);
+                } catch (error) {
+                  console.error(`  ✗ Failed to close PR #${pr.number}:`, error.message);
+                }
+              } else {
+                console.log(`  (Dry run - would close this PR)`);
+              }
+            }
+            
+            if (dryRun) {
+              console.log('\n⚠️  This was a dry run. No PRs were actually closed.');
+              console.log('To close PRs, run this workflow again with dry_run=false');
+            } else {
+              console.log('\n✅ All open PRs have been processed.');
+            }
