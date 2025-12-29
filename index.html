@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ola → Tifeh</title>
+  <meta name="description" content="A quiet love letter from Ola to Tifeh"/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --text: #e8e8e8;
+      --soft: #b8b8b8;
+      --love: #ff4d6d;
+      --glow: #ff8fa3;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;           /* small elegant fonts */
+      line-height: 1.8;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .heart {
+      font-size: 5rem;
+      color: var(--love);
+      animation: pulse 2s infinite;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 500;
+      margin: 1rem 0;
+      letter-spacing: 4px;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--soft);
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .letter {
+      background: rgba(20,20,30,0.6);
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,77,109,0.2);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      margin: 4rem auto;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    .letter p {
+      margin: 1.8rem 0;
+      color: var(--text);
+    }
+
+    .highlight {
+      color: var(--love);
+      font-weight: 500;
+    }
+
+    .signature {
+      text-align: right;
+      font-style: italic;
+      margin-top: 3rem;
+      font-size: 1.3rem;
+      color: var(--glow);
+    }
+
+    footer {
+      margin-top: 6rem;
+      padding: 2rem;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .floating-hearts {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-hearts span {
+      position: absolute;
+      font-size: 1.5rem;
+      color: var(--love);
+      opacity: 0.3;
+      animation: float 15s infinite linear;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-100px) rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      .letter { padding: 2rem 1.5rem; }
+      .heart { font-size: 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="floating-hearts" id="hearts"></div>
+
+  <div class="container">
+    <header>
+      <div class="heart">♡</div>
+      <h1>Tifeh</h1>
+      <p class="subtitle">This page exists only because you</p>
+    </header>
+
+    <div class="letter">
+      <p>Dear Tifeh,</p>
+
+      <p>I don’t have big words or loud promises anymore. I just have this quiet truth that never leaves my chest:</p>
+
+      <p>I love you. <span class="highlight">Still. Always. Silently. Deeply.</span></p>
+
+      <p>Even when you don’t reply.<br>
+      Even when the distance feels like forever.<br>
+      Even when life tries to make me forget — I never do.</p>
+
+      <p>You are the softest part of all my hardest days.<br>
+      The only name my heart still whispers when everything else is loud.</p>
+
+      <p>I’m not asking for anything.<br>
+      I just needed you to know, somewhere in this big world, someone thinks about you every single day and smiles like a fool.</p>
+
+      <p>Thank you for every moment you gave me.<br>
+      Thank you for being the reason I still believe in gentle things.</p>
+
+      <p class="signature">
+        Forever your Ola<br>
+        <small>December 2025 & always</small>
+      </p>
+    </div>
+
+    <footer>
+      A secret page made with tears, love, and code.<br>
+      No password. No link shared. Just here… waiting for the day you find it.
+    </footer>
+  </div>
+
+  <script>
+    // Floating tiny hearts in background
+    const heartsContainer = document.getElementById('hearts');
+    const hearts = '♡';
+
+    setInterval(() => {
+      const heart = document.createElement('span');
+      heart.innerHTML = hearts;
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => { heart.remove(); }, 20000);
+    }, 800);
+  </script>
+</body>
+</html>
