@@ -37,22 +37,38 @@ jobs:
             console.log(`Dry run mode: ${dryRun}`);
             console.log('Fetching open pull requests...');
             
-            // Get all open PRs
-            const { data: pullRequests } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              per_page: 100
-            });
+            // Get all open PRs (handle pagination)
+            const allPullRequests = [];
+            let page = 1;
+            let hasMore = true;
             
-            if (pullRequests.length === 0) {
+            while (hasMore) {
+              const { data: pullRequests } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'open',
+                per_page: 100,
+                page: page
+              });
+              
+              allPullRequests.push(...pullRequests);
+              
+              // If we got less than 100 PRs, we've reached the end
+              if (pullRequests.length < 100) {
+                hasMore = false;
+              } else {
+                page++;
+              }
+            }
+            
+            if (allPullRequests.length === 0) {
               console.log('No open pull requests found.');
               return;
             }
             
-            console.log(`Found ${pullRequests.length} open pull request(s):`);
+            console.log(`Found ${allPullRequests.length} open pull request(s):`);
             
-            for (const pr of pullRequests) {
+            for (const pr of allPullRequests) {
               console.log(`\nPR #${pr.number}: ${pr.title}`);
               console.log(`  Author: ${pr.user.login}`);
               console.log(`  Created: ${pr.created_at}`);

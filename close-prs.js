@@ -61,21 +61,37 @@ function makeRequest(options, data = null) {
 }
 
 /**
- * Get all open pull requests
+ * Get all open pull requests (handles pagination)
  */
 async function getOpenPRs() {
-  const options = {
-    hostname: 'api.github.com',
-    path: `/repos/${OWNER}/${REPO}/pulls?state=open&per_page=100`,
-    method: 'GET',
-    headers: {
-      'User-Agent': 'close-prs-script',
-      'Authorization': `Bearer ${GITHUB_TOKEN}`,
-      'Accept': 'application/vnd.github.v3+json'
-    }
-  };
+  let allPRs = [];
+  let page = 1;
+  let hasMore = true;
   
-  return makeRequest(options);
+  while (hasMore) {
+    const options = {
+      hostname: 'api.github.com',
+      path: `/repos/${OWNER}/${REPO}/pulls?state=open&per_page=100&page=${page}`,
+      method: 'GET',
+      headers: {
+        'User-Agent': 'close-prs-script',
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json'
+      }
+    };
+    
+    const prs = await makeRequest(options);
+    allPRs = allPRs.concat(prs);
+    
+    // If we got less than 100 PRs, we've reached the end
+    if (prs.length < 100) {
+      hasMore = false;
+    } else {
+      page++;
+    }
+  }
+  
+  return allPRs;
 }
 
 /**
