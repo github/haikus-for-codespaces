@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Birthday!</title>
+  <style>
+    body { background: #ffe4e1; text-align: center; font-family: 'Arial', sans-serif; padding-top: 50px; }
+    .card { background: white; width: 300px; margin: auto; padding: 20px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    h1 { color: #ff69b4; }
+    button { background: #ff69b4; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; }
+    #secret-message { display: none; margin-top: 20px; color: #555; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>🎈 Happy Birthday! 🎈</h1>
+    <p>Halo [Nama Teman], ada pesan buat kamu...</p>
+    <button onclick="showMessage()">Klik di sini</button>
+    <div id="secret-message">
+      Semoga harimu menyenangkan dan semua impianmu tercapai! ✨
+    </div>
+  </div>
+
+  <script>
+    function showMessage() {
+      document.getElementById('secret-message').style.display = 'block';
+      alert('Selamat hari spesial ya! 🎉');
+    }
+  </script>
+</body>
+</html>
