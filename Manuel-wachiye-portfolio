@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Manuel Wachiye — Portfolio</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Roboto, "Helvetica Neue", Arial; color:#111; margin:0; padding:24px; background:#f7f7f8; }
+    .container { max-width:900px; margin:0 auto; background:#fff; padding:28px; border-radius:8px; box-shadow:0 6px 18px rgba(20,20,30,0.06); }
+    header { display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+    h1 { margin:0; font-size:24px; }
+    .sub { color:#555; margin-top:6px; font-size:14px; }
+    .contact a { color:#0066cc; text-decoration:none; margin-right:12px; }
+    section { margin-top:20px; }
+    h2 { margin:0 0 8px 0; font-size:18px; }
+    ul { margin:8px 0 0 18px; }
+    .cols { display:grid; grid-template-columns:1fr 320px; gap:20px; }
+    .card { background:#fbfbfd; padding:14px; border-radius:6px; }
+    .project { margin-bottom:12px; }
+    footer { margin-top:20px; font-size:13px; color:#555; text-align:center; }
+    @media (max-width:800px){ .cols{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Manuel Wachiye</h1>
+        <div class="sub">Data Entry • Photo Editing • Graphic Design • Computer & Internet Security</div>
+      </div>
+      <div class="contact">
+        <div><a href="mailto:manuwachiye2@gmail.com">manuwachiye2@gmail.com</a></div>
+        <div><a href="tel:+254742658464">+254 742 658 464</a></div>
+        <div><a href="https://linkedin.com/in/manuwachiye" target="_blank" rel="noopener">linkedin.com/in/manuwachiye</a></div>
+        <div style="margin-top:8px;color:#333;font-weight:600">$4 per project • Freelance (remote)</div>
+      </div>
+    </header<section>
+  <h2>Professional Summary</h2>
+  <p>Detail-oriented Data Entry & Digital Media Specialist with 1 year of remote experience converting raw data into clean datasets, editing product and marketing imagery, designing brand assets, and applying practical computer & internet security measures. Fast, accurate, confidentiality-focused, and comfortable automating repetitive tasks and collaborating entirely online.</p>
+</section>
+
+<div class="cols">
+  <div>
+    <section>
+      <h2>Core Skills</h2>
+      <ul>
+        <li>Data entry & processing: high accuracy, data validation, OCR verification</li>
+        <li>Tools & automation: Excel, Google Sheets, Python (pandas), Tesseract OCR</li>
+        <li>Photo editing: Photoshop, Lightroom, GIMP — retouching, background removal, color correction</li>
+        <li>Graphic design: Illustrator, InDesign, Canva — logos, social templates, layouts</li>
+        <li>Computer & internet security: basic hardening, secure configurations, vulnerability scanning awareness</li>
+        <li>Remote collaboration: Google Drive, Dropbox, Zoom, Slack, Trello/Asana</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <div class="card">
+        <strong>Data Entry & Processing Specialist — Self‑employed (Remote), Nairobi</strong><br>
+        <em>12/2024 – Present</em>
+        <ul>
+          <li>Enter, clean, and normalize large datasets with ≥99% accuracy; created validation rules and templates to reduce errors.</li>
+          <li>Automated recurring imports/exports and built scripts to cut manual time by 40%.</li>
+          <li>Delivered datasets and reports via secure cloud links and coordinated with clients remotely.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-top:10px">
+        <strong>Freelance Photo Editor & Graphic Designer — Self‑employed (Remote)</strong><br>
+        <em>12/2024 – Present</em>
+        <ul>
+          <li>Edited 500+ ecommerce images: background removal, color correction, consistent sizing; improved throughput by 40%.</li>
+          <li>Designed brand assets and social media kits; delivered editable templates and before/after samples via cloud.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-top:10px">
+        <strong>Security & IT Support (Consulting) — Self‑employed (Remote)</strong><br>
+        <em>12/2024 – Present</em>
+        <ul>
+          <li>Performed baseline security reviews, provided password policy and firewall recommendations; reduced common misconfigurations by 60%.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Tools & Technologies</h2>
+      <p>Microsoft Excel, Google Sheets, Python (pandas), Tesseract OCR, Adobe Photoshop, Lightroom, Illustrator, Canva, Nmap (basic), Wireshark (basic), Git, Google Drive, Dropbox, Zoom</p>
+    </section>
+  </div>
+
+  <aside>
+    <section class="card">
+      <h2>Selected Remote Projects</h2>
+
+      <div class="project">
+        <strong>Efficient Data Migration</strong>
+        <p>Migrated 12,000 product records from PDFs/CSVs into a normalized template; cleaned SKUs, standardized categories, and reduced duplicates by 98%. Deliverables: cloud-shared Excel/Sheets and import-ready CSVs.</p>
+      </div>
+
+      <div class="project">
+        <strong>E-commerce Photo Retouching</strong>
+        <p>Batch-processed 500+ product images for web: background removal, consistent cropping, color correction; delivered zipped web assets via cloud.</p>
+      </div>
+
+      <div class="project">
+        <strong>Brand Identity & Social Media Kit</strong>
+        <p>Created logo, color palette, and editable social templates; client-reported social engagement increase ~30%. Delivered source files and style guide online.</p>
+      </div>
+
+      <div class="project">
+        <strong>Invoice OCR Automation</strong>
+        <p>Proof-of-concept script (Tesseract + pandas) to parse 2,500 scanned invoices to CSV with ~95% extraction accuracy after validation; automated ~60% of repetitive entries. Code and samples shared via Git/Drive.</p>
+      </div>
+
+      <div class="project">
+        <strong>Social Media Ad Creative Package</strong>
+        <p>Designed 50 campaign-ready ad creatives and reusable templates; optimized for web/mobile, improving click-through by ~28%. Delivered compressed assets and editable templates.</p>
+      </div>
+
+      <div class="project">
+        <strong>Data Quality Dashboard & Validation</strong>
+        <p>Built online data-quality dashboard (Google Sheets + Apps Script) to enforce validation and flag anomalies; caught ~90% of routine data errors and reduced manual corrections by ~75%.</p>
+      </div>
+    </section>
+
+    <section style="margin-top:12px; text-align:center;">
+      <div class="card">
+        <strong>Availability</strong>
+        <p>Freelance (remote) — Rate: $4 per project</p>
+      </div>
+    </section>
+  </aside>
+</div>
+
+<footer>
+  References and portfolio samples available on request • <a href="https://linkedin.com/in/manuwachiye" target="_blank" rel="noopener">linkedin.com/in/manuwachiye</a>
+</footer>  </div>
+</body>
+</html>
