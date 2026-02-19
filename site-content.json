@@ -1,0 +1,53 @@
+{
+  "site": {
+    "title": "Ruiru Mabati | Quality Roofing Sheets in Kenya",
+    "description": "Ruiru Mabati Factory — Manufacturer and supplier of quality roofing sheets in Kenya. Box profile, corrugated and eurotile mabati. Kenya-wide delivery.",
+    "url": "https://www.ruirumabati.co.ke",
+    "contact": {
+      "phone": "+254712345678",
+      "displayPhone": "0712 345 678",
+      "email": "info@ruirumabati.co.ke",
+      "location": "Ruiru, Kiambu County"
+    },
+    "nav": [
+      { "label": "About", "href": "#about" },
+      { "label": "Products", "href": "#products" },
+      { "label": "Contact", "href": "#contact" }
+    ],
+    "hero": {
+      "heading": "Premium Roofing Sheets • Direct From Factory",
+      "image": "https://i.ibb.co/Sn7WqZ7/mabati.jpg",
+      "alt": "Roofing sheets from Ruiru Mabati Factory"
+    },
+    "about": {
+      "title": "About Us",
+      "text": "Ruiru Mabati Factory is a trusted manufacturer of high-quality roofing sheets in Kenya. We supply premium iron sheets such as box profile, corrugated, and eurotile mabati. Our products come in various gauges, colors, and profiles to suit all types of construction projects."
+    },
+    "products": [
+      {
+        "id": "box-profile",
+        "name": "Box Profile Mabati",
+        "image": "https://i.ibb.co/QMb1dVk/box-profile.jpg",
+        "alt": "Box Profile Mabati, gauge 28/30",
+        "details": "Gauge 28 / 30. Different colors available"
+      },
+      {
+        "id": "corrugated",
+        "name": "Corrugated Mabati",
+        "image": "https://i.ibb.co/N9MnhKn/corrugated.jpg",
+        "alt": "Corrugated Mabati roof sheets",
+        "details": "Durable and affordable roofing sheets for all projects."
+      },
+      {
+        "id": "eurotile",
+        "name": "Eurotile Mabati",
+        "image": "https://i.ibb.co/p21y9YH/eurotile.jpg",
+        "alt": "Eurotile Mabati tile profile",
+        "details": "Elegant tile profile with premium coating."
+      }
+    ],
+    "footer": {
+      "copyright": "© 2025 Ruiru Mabati Factory – All Rights Reserved"
+    }
+  }
+}
