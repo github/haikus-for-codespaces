@@ -10,10 +10,10 @@
         "dev": "nodemon"
     },
     "dependencies": {
-        "ejs": "^3.1.10",
+        "ejs": "^4.0.1",
         "express": "^4.22.1"
     },
     "devDependencies": {
-        "nodemon": "^2.0.19"
+        "nodemon": "^3.1.14"
     }
 }
