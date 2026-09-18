@@ -1,0 +1,373 @@
+带Webpack的NodeJS名称：带Webpack的NodeJS姓名
+
+带Webpack的NodeJS名称：带Webpack的NodeJS姓名:
+推：:
+分支机构：["main"]: [ "主要" ]
+pull_request：:
+分支机构：["main"]: [ "主要" ]
+
+作业：:
+建立：:
+run-on:ubuntu-latest: Ubuntu-最新
+
+策略：:
+矩阵：:
+节点版本：[18.x，20.x，22.x]: [18.x,20.x,22.x]
+
+步骤：:
+-使用：操作/结帐@v4uses: 操作/结帐@v4
+
+-名称：使用节点。JS${{矩阵.节点版本}}名称: 使用Node.js${{matrix.node-version}}
+用途：操作/setup-node@v4: 操作/设置-节点@v4
+和……一起：:
+节点版本：${{matrix.node-version}}: ${{matrix.node-version}}
+
+-名称：内部版本名: 建立
+运行：|: |
+npm安装
+npx webpack
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>@xiginyu1 的无标题项目</title>
+  <style>
+    /* 全局样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "微软雅黑", sans-serif;
+    }
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+
+    /* 顶部状态栏（模拟手机状态栏） */
+    .status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #000;
+      padding: 4px 8px;
+      font-size: 14px;
+    }
+    .status-left { display: flex; align-items: center; gap: 6px; }
+    .status-right { display: flex; align-items: center; gap: 6px; }
+
+    /* 导航栏 */
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #111;
+      padding: 6px 10px;
+      border-bottom: 1px solid #333;
+    }
+    .nav-left { display: flex; align-items: center; gap: 8px; }
+    .nav-right { display: flex; align-items: center; gap: 8px; }
+
+    /* 项目标题区域 */
+    .project-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #111;
+      padding: 8px 12px;
+      border-bottom: 1px solid #333;
+    }
+    .project-title { font-size: 16px; font-weight: bold; }
+    .header-buttons button {
+      margin-left: 6px;
+      padding: 4px 8px;
+      background-color: #222;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius：4px;
+      cursor：po我nter;
+      font-size: 12px;
+    }
+
+    /* 视图切换区域 */
+    .view-bar {
+      display: flex;
+      align-items: center;
+      background-color: #111;
+      padding: 6px 10px;
+      border-bottom: 1px solid #333;
+    }
+    .view-btn {
+      padding: 4px 8px;
+      background-color: #222;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius：4px;
+      cursor：po我nter;
+      font-size: 12px;
+      margin-right: 6px;
+    }
+    .new-view-btn {
+      padding: 4px 8px;
+      background-color：#333;
+      color：#fff;
+      border: 1px solid #555;
+      border-radius：4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    /* 搜索栏 */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background-color: #111;
+      padding: 6px 10px;
+      border-bottom: 1px solid #333;
+    }
+    .search-input {
+      flex: 1;
+      padding: 4px 8px;
+      background-color：#222;
+      color：#fff;
+      border: 1px solid #444;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .search-btn {
+      padding: 4px 8px;
+      background-color: #222;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 4px;
+      cursor: pointer;
+      font-s我ze：12px;
+      margin-left 6px;:
+    }
+
+    /* 表格表头 */
+    .table-header {
+      display: flex;
+      background-color: #111;
+      padding: 6px 10px;
+      border-bottom: 1px solid #333;
+      font-size：12px;
+    }
+    .header-我tem {
+      flex：1;
+      text-align: left;
+      padding: 0 4px;
+    }
+    .header-actions {
+      width: 40px;
+      text-align: center;
+    }
+
+    /* 项目列表 */
+    .project-list {
+      background-color: #000;
+    }
+    .project-item {
+      display: flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-bottom: 1px solid #222;
+      font-size: 12px;
+    }
+    .item-title {
+      flex: 1;
+      padding: 0 4px;
+    }
+    .item-actions {
+      width: 40px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    /* 底部添加提示 */
+    .add-hint {
+      padding: 8px 10px;
+      background-color: #111;
+      border-bottom: 1px solid #333;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    /* 右下角悬浮按钮 */
+    .floating-btns {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .floating-btn {
+      width: 50px;
+      height: 50px;
+      background-color: #fff;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .floating-btn img {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* 全屏按钮（示例） */
+    .fullscreen-btn {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background-color: #fff;
+      border: none;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+<! -- 模拟手机状态栏 -->
+<div class="状态栏">
+<div class="状态-左侧">
+<span>00:38</span>
+<img src="https://cdn-icons-png.flaticon.com/512/25/25694.png"alt="微信"风格="宽度：16px；高度：16px；">
+<img src="https://cdn-icons-png.flaticon.com/512/107/107613.png"alt="QQ"风格="宽度：16px；高度：16px；">
+<img src="https://cdn-icons-png.flaticon.com/512/25/25697.png"alt="微博"风格="宽度：16px；高度：16px；">
+</div>
+<div class="状态权">
+<span>27.8KB/s</span>
+<span>5G</span>
+<span>5G</span>
+<span>WiFi</span>
+<span>57%</span>
+<img src="https://cdn-icons-png.flaticon.com/512/107/107652.png"alt="电池"风格="宽度：16px；高度：16px；">
+</div>
+</div>
+
+<! -- 导航栏 -->
+<div class="导航栏">
+<div class="左导航">
+<button>☰</button>
+<button>🔄</button>
+<span>西琴玉1号/项目/@xiginyu1 的无标题项目</span>
+</div>
+<div class="右导航">
+<button>🔍</button>
+<button>📷</button>
+<button>➕</button>
+<button>⭕</button>
+<button>📊</button>
+<button>📅</button>
+<button>➕</button>
+</div>
+</div>
+
+<! -- 项目标题区域 -->
+<div class="项目头">
+<div class="项目名称">@xiginyu1 的无标题项目</div>
+<div class="页眉按钮">
+<button>添加状态更新</button>
+<button>见解</button>
+<button>工作流程(6)</button>
+<button>🖼️</button>
+<button>⋯⋯</button>
+</div>
+</div>
+
+！ --视图转换区域-->
+<div class="视图栏">"视图栏">
+<按钮类="view-btn">视图1</button>"view-btn">视图1</button>
+<选择类别="视图选择">"视图选择">
+<选项>视图1</option>
+<选项>视图2</option>
+</select>
+<按钮类="new-view-btn"+新建视图</button>"new-view-btn"+新建视图</button>
+</div>
+
+<! -- 搜索栏 -->
+<div class="搜索栏">"搜索栏">
+<输入类型="文本"班级="搜索输入"占位符="按关键字或字段筛选"/>"文本"班级="搜索输入"占位符="按关键字或字段筛选"/>
+<按钮类="搜索-btn">观点</button>"搜索-btn">观点</button>
+</div>
+
+  <!-- 表格表头 -->
+<div class="表头">"表头">
+<div class="页眉-项目">标题</div>"页眉-项目">标题</div>
+<div class="头操作">⋯</div>"头操作">⋯</div>
+<div class="页眉-项目">受让人</div>"页眉-项目">受让人</div>
+<div class="头操作">⋯</div>"头操作">⋯</div>
+<div class="页眉-项目">状态</div>"页眉-项目">状态</div>
+</div>
+
+<! -- 项目列表（初始为空，可点击“+”添加） -->
+<div class="项目列表"id="项目列表">"项目列表"id="项目列表">
+<! -- 项目项会通过JS动态添加 -->
+</div>
+
+<! -- 底部添加提示 -->
+<div class="添加提示">"添加提示">
++您可以使用<span style="背景：#333；填充：2px4px；边框半径：4px；">控制+空格</span>添加项目"背景：#333；填充：2px4px；边框半径：4px；">控制+空格</span>添加项目
+</div>
+
+  <!-- 右下角悬浮按钮（示例图标，可替换） -->
+<div class="floating-btns">"floating-btns">
+<按钮类="floating-btn">"floating-btn">
+<img src="https://cdn-icons-png.flaticon.com/512/25/25694.png"alt="按钮1"/>"https://cdn-icons-png.flaticon.com/512/25/25694.png"alt="按钮1"/>
+</button>
+<按钮类="floating-btn">"floating-btn">
+<img src="https://cdn-icons-png.flaticon.com/512/107/107613.png"alt="按钮2"/>"https://cdn-icons-png.flaticon.com/512/107/107613.png"alt="按钮2"/>
+</button>
+</div>
+
+<！ --全屏按键（示例）-->
+<按钮类="全屏-BTN">□</button>"全屏-btn">□</button>
+
+<script>
+    // 初始化项目列表（空）
+常量项目列表=document.getElementById('项目列表')；'项目列表');
+
+    // 模拟添加项目（示例：点击“+”触发）
+document.addEventListener('按下键'，(e)=>{'按下键'，(e)=>{
+if(e.ctrl键&&e.code==='空间'){'空间') {
+常数标题=提示('请输入项目标题');'请输入项目标题');
+if(标题){{
+Const item=document.createElement('div')；'div');
+item.className='项目项'；'项目项';
+item.innerHTML=''
+<div class="项目标题">${标题}</div>"项目标题">${标题}</div>
+<div class="项目-操作">⋯</div>"项目-操作">⋯</div>
+<div class="项目标题">未分配</div>"项目标题">未分配</div>
+<div class="项目-操作">⋯</div>"项目-操作">⋯</div>
+<div class="项目标题">未开始</div>"项目标题">未开始</div>
+`;
+projectList.appendChild(item)；
+        }
+      }
+    });
+
+    // 搜索功能（简单示例）
+常量searchinput=文档。querySelector('.search-input')；'.search-input');
+searchInput.addEventListener('输入'，()=>{'输入', () =>{
+Const关键字=searchInput.value.toLowerCase()；
+常量项=项目列表。querySelectorAll('.project-item')；'.project-item');
+items.forEach(item=>{{
+常量标题=项。querySelector('.item-title')。文本内容。toLowerCase()；'.item-title').textContent.toLowerCase()；
+item.style.display=title.includes(关键字)？'弯曲'：'无'； : '无';
+      });
+    });
+</script>
+</body>
+</html>
